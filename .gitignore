@@ -13,7 +13,8 @@
 /image
 /known_devices.yaml
 /node-red
-/www
+www/community/*
+www/images*
 /zigbee2mqtt
 /tts
 secrets.yaml
