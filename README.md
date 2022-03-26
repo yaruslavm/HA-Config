@@ -20,10 +20,10 @@
 
 * Individual Light Controll
  
-![screenshot](https://github.com/yaruslavm/HA-Config/blob/master/www/img/mainscreen.PNG)
+![screenshot](https://github.com/yaruslavm/HA-Config/blob/master/www/img/LightControl%20Popup.PNG)
 
 ## Screenshots
 
-| [![Placeholder]()](https://raw.githubusercontent.com/matt8707/hass-config/master/www/img/info_light_2.png)<br>Placeholder | [![Network Popup](https://github.com/yaruslavm/HA-Config/blob/master/www/img/network%20Popup.PNG)](https://raw.githubusercontent.com/matt8707/hass-config/master/www/img/info_2.png)<br>Network Popup | [![Shutters](https://github.com/yaruslavm/HA-Config/blob/master/www/img/shutters.PNG)](https://raw.githubusercontent.com/matt8707/hass-config/master/www/img/vacuum_2.png)<br>Shutters |
+| [![Placeholder]()](https://raw.githubusercontent.com/matt8707/hass-config/master/www/img/info_light_2.png)<br>Placeholder | [![Network Popup](https://github.com/yaruslavm/HA-Config/blob/master/www/img/network%20Popup.PNG)](https://github.com/yaruslavm/HA-Config/blob/master/www/img/network%20Popup.PNG)<br>Network Popup | [![Shutters](https://github.com/yaruslavm/HA-Config/blob/master/www/img/shutters.PNG)](https://github.com/yaruslavm/HA-Config/blob/master/www/img/shutters.PNG)<br>Shutters |
 |:---:|:---:|:---:|
-| [![System Information](https://github.com/yaruslavm/HA-Config/blob/master/www/img/sysinfo%20popup.PNG)](https://raw.githubusercontent.com/matt8707/hass-config/master/www/img/misc_2.png)<br>**Misc** | [![Lights Tab](https://github.com/yaruslavm/HA-Config/blob/master/www/img/Lights.PNG)](https://raw.githubusercontent.com/matt8707/hass-config/master/www/img/tracker_updates.png)<br>**Lights Tab** | [![custom_icons](https://raw.githubusercontent.com/matt8707/hass-config/master/www/img/custom_icons.png)](https://raw.githubusercontent.com/matt8707/hass-config/master/www/img/custom_icons.png)<br>**Vacuum** |
+| [![System Information](https://github.com/yaruslavm/HA-Config/blob/master/www/img/sysinfo%20popup.PNG)](https://github.com/yaruslavm/HA-Config/blob/master/www/img/sysinfo%20popup.PNG)<br>**System Information** | [![Lights Tab](https://github.com/yaruslavm/HA-Config/blob/master/www/img/Lights.PNG)](https://raw.githubusercontent.com/matt8707/hass-config/master/www/img/tracker_updates.png)<br>**Lights Tab** | [![custom_icons]((https://github.com/yaruslavm/HA-Config/blob/master/www/img/vacuum.PNG))](https://github.com/yaruslavm/HA-Config/blob/master/www/img/vacuum.PNG)<br>**Vacuum (Card is broken atm)** |
