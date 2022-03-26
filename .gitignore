@@ -1,15 +1,9 @@
-/.HA_VERSION
-/.cloud
-/.google_maps_location_sharing.cookies.yaroslavmha_gmail_com
-/.storage
+.*
+!.HA_VERSION
 /custom_components
 /deps
-/home-assistant.log
-/home-assistant.log.1
-/home-assistant.log.fault
-/home-assistant_v2.db
-/home-assistant_v2.db-shm
-/home-assistant_v2.db-wal
+home-assistant.log*
+home-assistant_v2.db*
 /image
 /known_devices.yaml
 /node-red
@@ -18,4 +12,4 @@ www/images*
 /zigbee2mqtt
 /tts
 secrets.yaml
-/blueprints
+blueprints/*
