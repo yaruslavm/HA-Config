@@ -10,8 +10,8 @@ layout:
     "one two . three . four"
     "mone mtwo . mthree . mfour"
 visible:
-  - user: ba49ce3365aa4d5b9ff34edbfc2b90d3 #yar
-  - user: 027d3e5198054dacb5b209a29a06a347 #tablet
+  - user: ba49ce3365aa4d5b9ff34edbfc2b90d3 # user:yar
+  - user: 027d3e5198054dacb5b209a29a06a347 # user:tablet
 badges: []
 background: >-
   left / cover no-repeat
