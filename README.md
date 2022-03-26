@@ -1,9 +1,11 @@
+## This is work in Progress a lot of stuff is still unfinished  and display undesirable values, credits to matt8707 for his ideas on design
+
 # Home Assistant Configuration
 * Home assistant running on Intel NUC (Windows 7 OS) & Virtual Box VM with auto start HA OS.
 * Using it on Surface Pro (Windows 11 OS)
 ![screenshot](https://github.com/yaruslavm/HA-Config/blob/master/www/img/mainscreen.PNG)
 
-## Screenshots
+
 
 ## Popups
 * Climate Popup if clicked on any of the Temp Graphs
