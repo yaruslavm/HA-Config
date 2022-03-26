@@ -20,7 +20,7 @@ background: >-
 #background: "right/auto linear-gradient(23deg, rgba(240, 240, 240, 1) 15%, rgba(160, 160, 160, 1) 45%, rgba(211, 211, 211, 1) 100%)"
 cards:
   - type: grid
-    #title: Today's Outlook
+    #title: Today's Outlook view
     columns: 1
     view_layout:
       grid-area: one
