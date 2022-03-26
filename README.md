@@ -24,6 +24,6 @@
 
 ## Screenshots
 
-| [![Placeholder]()](https://raw.githubusercontent.com/matt8707/hass-config/master/www/img/info_light_2.png)<br>Placeholder | [![Network Popup](https://github.com/yaruslavm/HA-Config/blob/master/www/img/network%20Popup.PNG)](https://github.com/yaruslavm/HA-Config/blob/master/www/img/network%20Popup.PNG)<br>Network Popup | [![Shutters](https://github.com/yaruslavm/HA-Config/blob/master/www/img/shutters.PNG)](https://github.com/yaruslavm/HA-Config/blob/master/www/img/shutters.PNG)<br>Shutters |
+| [![Placeholder]()](g)<br>Placeholder | [![Network Popup](https://github.com/yaruslavm/HA-Config/blob/master/www/img/network%20Popup.PNG)](https://github.com/yaruslavm/HA-Config/blob/master/www/img/network%20Popup.PNG)<br>Network Popup | [![Shutters](https://github.com/yaruslavm/HA-Config/blob/master/www/img/shutters.PNG)](https://github.com/yaruslavm/HA-Config/blob/master/www/img/shutters.PNG)<br>Shutters |
 |:---:|:---:|:---:|
 | [![System Information](https://github.com/yaruslavm/HA-Config/blob/master/www/img/sysinfo%20popup.PNG)](https://github.com/yaruslavm/HA-Config/blob/master/www/img/sysinfo%20popup.PNG)<br>**System Information** | [![Lights Tab](https://github.com/yaruslavm/HA-Config/blob/master/www/img/Lights.PNG)](https://github.com/yaruslavm/HA-Config/blob/master/www/img/Lights.PNG)<br>**Lights Tab** | [![custom_icons](https://github.com/yaruslavm/HA-Config/blob/master/www/img/vacuum.PNG)](https://github.com/yaruslavm/HA-Config/blob/master/www/img/vacuum.PNG)<br>**Vacuum (Card is broken atm)** |
