@@ -1,0 +1,133 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: Boiler Controll
+  style:
+    .: |
+      :host {
+        --ha-card-background: #37464f;
+        --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+        --mdc-theme-surface: #37464f;
+        --ha-card-header-font-size: 18px;
+        --ha-card-border-radius: 15px;
+        --stack-card-margin: 0px 0;
+      }
+  card:
+    type: vertical-stack
+    cards:
+      - type: custom:button-card
+        entity: switch.shelly1pm_boiler
+        icon: mdi:water-boiler
+        name: Boiler
+        show_state: true
+        show_label: true
+        secondary_info: last-updated
+        show_last_changed: true
+
+        style:
+          .: |
+            :host {
+              --ha-card-border-radius: 0px;
+            }
+        styles:
+          grid:
+            - grid-template-areas: '"name" "state" "label" "icon"'
+            - grid-template-columns: 1fr
+            - grid-template-rows: auto
+          name:
+            - justify-self: center
+            - padding-right: 0px
+            - font-weight: bold
+            - font-size: 18px
+            - margin-top: "-10%"
+            - margin-right: 260%
+          state:
+            - justify-self: center
+            - padding-right: 0px
+            - padding-left: 0px
+            - font-size: 16px
+            - margin-bottom: "-10%"
+            - margin-right: 270%
+          label:
+            - font-size: 15px
+            - font-weight: bold
+            - justify-self: center
+            - margin-bottom: "-30%"
+            - margin-right: 230%
+          icon:
+            - color: var(--button-card-light-color)
+            - align-items: start
+            - align-self: start
+            - width: 60%
+            - margin-top: "0%"
+            - margin-right: 40%
+        state:
+          - value: "on"
+            styles:
+              icon:
+                - color: "#f39c12"
+          - value: "off"
+            styles:
+              card:
+                - filter: opacity(50%)
+              icon:
+                - filter: grayscale(100%)
+          - value: unavailable
+            styles:
+              card:
+                - filter: opacity(30%)
+                - background-color: "#f39c12"
+              icon:
+                - filter: grayscale(100%)
+      - type: entities
+        card_mod:
+          class: content
+        entities:
+          - entity: sensor.shelly1pm_power
+            name: Current Power
+          - entity: sensor.shelly1pm_energy
+            name: Energy
+        style:
+          .: |
+            :host {
+              --ha-card-border-radius: 0px;
+            }
+      - type: "custom:mini-graph-card"
+        entities:
+          - entity: sensor.shelly1pm_boiler_temp
+        icon: mdi:thermometer
+        align_icon: left
+        align_header: left
+        name: Water Temp
+        unit: ""
+        group: false
+        hours_to_show: 6
+        update_interval: 600
+        points_per_hour: 6
+        animate: false
+        line_width: 4
+        line_color: var(--accent-color)
+        hour24: true
+        smoothing: false
+        show:
+          fill: true
+          graph: line
+          icon: true
+          state: true
+          labels: hover
+          points: hover
+          legend: false
+          extrema: false
+          name_adaptive_color: false
+          icon_adaptive_color: false
+          labels_secondary: false
+        color_thresholds:
+          - value: 40
+            color: "#b4b7b8"
+          - value: 49
+            color: "#db8a0f"
+        style:
+          .: |
+            :host {
+              --ha-card-border-radius: 0px;
+            }

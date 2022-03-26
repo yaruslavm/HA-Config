@@ -1,0 +1,291 @@
+title: Lights
+icon: mdi:lightbulb
+type: custom:grid-layout
+layout:
+  grid-gap: var(--custom-layout-card-padding)
+  grid-template-columns: 180px 10px 340px 40px 340px 40px 180px 10px 150px #total space is
+  grid-template-rows: auto
+  grid-template-areas: |
+    "nav . one . two . three . four"
+    "mnav. mone . mtwo . mthree . mfour"
+visible:
+  - user: ba49ce3365aa4d5b9ff34edbfc2b90d3 #yar
+  - user: 027d3e5198054dacb5b209a29a06a347 #tablet
+badges: []
+background: >-
+  center / cover no-repeat
+  url("/local/images/9_12.png")
+  fixed
+#background: "right/auto linear-gradient(23deg, rgba(240, 240, 240, 1) 15%, rgba(160, 160, 160, 1) 45%, rgba(211, 211, 211, 1) 100%)"
+cards:
+  - type: grid
+    title: []
+    columns: 1
+    cards:
+      - type: custom:button-card
+        icon: mdi:backburger
+        size: 30%
+        name: Overview
+        styles:
+          card:
+            - margin-top: 5px
+            - color: rgba(0, 0, 0, 0)
+            - width: fit-content
+            - background: rgba(0, 0, 0, 0)
+            - border: 0.12vw rgba(0, 0, 0, 0)
+            - transition: none
+            - padding: 0 0 0.05vw 0
+            - overflow: visible
+            - --mdc-ripple-color: rgba(0, 0, 0, 0.8)
+            - --paper-card-background-color: rgba(0, 0, 0, 0.0)
+            - box-shadow: "none"
+            - height: 160px
+            - width: 160px
+          icon:
+            - color: orange
+          name:
+            - color: white
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/0
+      - type: custom:button-card
+        icon: mdi:window-shutter
+        size: 30%
+        name: Blinds
+        styles:
+          card:
+            - margin-top: 5px
+            - color: rgba(0, 0, 0, 0)
+            - width: fit-content
+            - background: rgba(0, 0, 0, 0)
+            - border: 0.12vw rgba(0, 0, 0, 0)
+            - transition: none
+            - padding: 0 0 0.05vw 0
+            - overflow: visible
+            - --mdc-ripple-color: rgba(0, 0, 0, 0.8)
+            - --paper-card-background-color: rgba(0, 0, 0, 0.0)
+            - box-shadow: "none"
+            - height: 160px
+            - width: 160px
+          icon:
+            - color: orange
+          name:
+            - color: white
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/2
+    square: false
+    view_layout:
+      grid-area: nav
+  - type: grid
+    title: Living Room
+    columns: 2
+    cards:
+      - type: custom:button-card
+        entity: light.living_light_1
+        template: light_popup
+        icon: mdi:ceiling-light
+        name: Living Light 1
+        variables:
+          hhh: 160px
+          www: 160px
+      - type: custom:button-card
+        entity: light.living_light_2
+        template: light_popup
+        icon: mdi:ceiling-light
+        name: Living Light 2
+        variables:
+          hhh: 160px
+          www: 160px
+      - type: custom:button-card
+        entity: light.living_light_3
+        template: light_popup
+        icon: mdi:ceiling-light
+        name: Living Light 3
+        variables:
+          hhh: 160px
+          www: 160px
+      - type: custom:button-card
+        entity: light.living_light_4
+        template: light_popup
+        icon: mdi:ceiling-light
+        name: Living Light 4
+        variables:
+          hhh: 160px
+          www: 160px
+    square: false
+    view_layout:
+      grid-area: one
+  - type: grid
+    title: Dining & Living Room
+    columns: 2
+    cards:
+      - type: custom:button-card
+        entity: light.living_lamp
+        template: light_popup
+        icon: mdi:floor-lamp
+        name: Living Lamp
+        variables:
+          hhh: 160px
+          www: 160px
+      - type: custom:button-card
+        entity: light.0xa4c138d12ab80a11
+        template: light_popup
+        icon: mdi:floor-lamp
+        name: Dining Lamp
+        variables:
+          hhh: 160px
+          www: 160px
+
+      - type: custom:button-card
+        entity: light.dining_light_1
+        template: light_popup
+        icon: mdi:ceiling-light
+        name: Dining Light 1
+        variables:
+          hhh: 160px
+          www: 160px
+      - type: custom:button-card
+        entity: light.dining_light_2_2
+        template: light_popup
+        icon: mdi:ceiling-light
+        name: Dining Light 2
+        variables:
+          hhh: 160px
+          www: 160px
+    square: false
+    view_layout:
+      grid-area: two
+  - type: grid
+    title: Kitchen
+    columns: 1
+    cards:
+      - type: custom:button-card
+        entity: binary_sensor.kitchen_pir_occupancy
+        show_last_changed: true
+        template: sensorpir_looks
+        name: Kitchen
+        variables:
+          hhh: 160px
+          www: 160px
+          mt: -10%
+      - type: custom:button-card
+        entity: light.kitchen_light
+        template: light_popup
+        icon: mdi:ceiling-light
+        name: Kitchen Light
+        variables:
+          hhh: 160px
+          www: 160px
+    square: falsestudy
+    view_layout:
+      grid-area: three
+  - type: grid
+    title: Closet
+    columns: 1
+    cards:
+      - type: custom:button-card
+        entity: binary_sensor.closet_pir_occupancy
+        show_last_changed: true
+        template: sensorpir_looks
+        name: Closet
+        variables:
+          hhh: 160px
+          www: 160px
+          mt: -10%
+      - type: custom:button-card
+        entity: light.closet_light
+        icon: mdi:ceiling-light
+        template: light_popup
+        name: Closet Light
+        variables:
+          hhh: 160px
+          www: 160px
+    square: false
+    view_layout:
+      grid-area: four
+  - type: grid
+    title: Study
+    columns: 2
+    square: false
+    cards:
+      - type: custom:button-card
+        entity: light.study_light_1
+        template: light_popup
+        icon: mdi:ceiling-light
+        name: Office light 1
+        variables:
+          hhh: 160px
+          www: 160px
+      - type: custom:button-card
+        entity: light.study_light_2
+        template: light_popup
+        icon: mdi:ceiling-light
+        name: Office light 2
+        variables:
+          hhh: 160px
+          www: 160px
+      - type: custom:button-card
+        entity: light.study_light_3
+        template: light_popup
+        icon: mdi:ceiling-light
+        name: Office light 3
+        variables:
+          hhh: 160px
+          www: 160px
+      - type: custom:button-card
+        entity: light.study_lamp
+        template: light_popup
+        icon: mdi:floor-lamp
+        name: Office Lamp
+        variables:
+          hhh: 160px
+          www: 160px
+    view_layout:
+      grid-area: mone
+  - type: grid
+    title: Bedroom
+    columns: 2
+    cards:
+      - type: custom:button-card
+        entity: binary_sensor.bathroom_pir_occupancy
+        show_last_changed: true
+        template: sensorpir_looks
+        variables:
+          hhh: 160px
+          www: 160px
+          mt: -10%
+        name: Main Bathroom
+      - type: custom:button-card
+        entity: light.bathroom_light
+        template: light_popup
+        variables:
+          hhh: 160px
+          www: 160px
+        name: Main Bath Light
+    square: false
+    view_layout:
+      grid-area: mtwo
+  - type: grid
+    title: Bathrooms
+    columns: 1
+    cards:
+      - type: custom:button-card
+        entity: binary_sensor.bathroom_pir_occupancy
+        show_last_changed: true
+        template: sensorpir_looks
+        variables:
+          hhh: 160px
+          www: 160px
+          mt: -10%
+        name: Main Bathroom
+      - type: custom:button-card
+        entity: light.bathroom_light
+        template: light_popup
+        variables:
+          hhh: 160px
+          www: 160px
+        name: Main Bath Light
+    square: false
+    view_layout:
+      grid-area: mthree

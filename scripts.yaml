@@ -1,0 +1,12 @@
+test_roborock_s7:
+  alias: test roborock s7
+  sequence:
+  - service: vacuum.send_command
+    data:
+      command: app_segment_clean
+      params:
+      - 16
+      - 17
+    target:
+      entity_id: vacuum.roborock_s7
+  mode: single

@@ -1,0 +1,125 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: Batteries
+  style:
+    .: |
+      :host {
+        --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+        --mdc-theme-surface: #37464f;
+        --ha-card-header-font-size: 18px;
+        --ha-card-border-radius: 15px;
+        --horizontal-stack-card-margin: 0px 0px
+        --stack-card-margin: 0px 0;
+      }
+      :host .content {
+      width: 1000px;
+      margin: -20px -24px;
+        }
+  card:
+    type: horizontal-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Phones
+            style:
+              .: |
+                :host {
+                  --ha-card-border-radius: 0px;
+                }
+                ha-card {
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none;
+                  box-shadow: none;
+                  text-align: left;
+                  background-color: transparent;
+                }
+
+                h1.card-header {
+                    padding: 1px 25px 10px;
+                }
+            entities:
+              - entity: sensor.iragalaxy_battery_level
+                secondary_info: last-changed
+                name: Ira's Phone
+              - entity: sensor.ymandr_battery_level
+                secondary_info: last-changed
+                name: Yar's Phone
+              - type: divider
+              - entity: sensor.magic_cube_battery
+                secondary_info: last-changed
+                name: Magic Cube
+              - type: divider
+              - entity: sensor.kitchen_pir_battery
+                secondary_info: last-changed
+                name: Kitchen
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: PIR Sensors
+            style:
+              .: |
+                :host {
+                  --ha-card-border-radius: 0px;
+                }
+                ha-card {
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none;
+                  box-shadow: none;
+                  text-align: left;
+                  background-color: transparent;
+                }
+                h1.card-header {
+                    padding: 1px 25px 10px;
+                }
+            entities:
+              - entity: sensor.bathroom_pir_battery
+                secondary_info: last-changed
+                name: Bathroom
+              - entity: sensor.hall_pir_battery
+                secondary_info: last-changed
+                name: Hall
+              - entity: sensor.closet_pir_battery
+                secondary_info: last-changed
+                name: Closet
+              - entity: sensor.kitchen_pir_battery
+                secondary_info: last-changed
+                name: Kitchen
+              - type: divider
+
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Other Sensors
+            style:
+              .: |
+                :host {
+                  --ha-card-border-radius: 0px;
+                }
+                ha-card {
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none;
+                  box-shadow: none;
+                  text-align: left;
+                  background-color: transparent;
+                }
+                h1.card-header {
+                    padding: 1px 25px 10px;
+                }
+            entities:
+              - entity: sensor.closet_temprature_battery
+                secondary_info: last-changed
+                name: Dining Temperature
+              - type: divider
+              - entity: sensor.front_door_sensor_battery
+                secondary_info: last-changed
+                name: Front Door
+              - entity: sensor.balcony_sensor_1_battery
+                secondary_info: last-changed
+                name: Balcony 1
+              - entity: sensor.balcony_sensor_2_battery
+                secondary_info: last-changed
+                name: Balcony 2
+              - type: divider
+    state_color: true

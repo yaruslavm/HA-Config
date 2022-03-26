@@ -1,0 +1,72 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: All Door Sensors
+  style:
+    .: |
+      hui-horizontal-stack-card {
+          padding: 0px 1px 0px 1px;
+        }
+      :host .content {
+      width: 510px;
+      margin: 1px 4px;
+        }
+      :host {
+        --ha-card-background: #37464f;
+        --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+        --mdc-theme-surface: #37464f;
+        --ha-card-header-font-size: 18px;
+        --grid-card-gap 0px;
+        --ha-card-border-radius: 15px;
+      }
+  card:
+    type: horizontal-stack
+    cards:
+      - type: grid
+        columns: 3
+        view_layout:
+          grid-area: two
+        cards:
+          - type: custom:button-card
+            entity: binary_sensor.front_door_sensor_contact
+            template:
+              - sensor_looks
+              - labeltop_looks
+            name: Front Door
+            icon: mdi:door-closed-lock
+            show_label: true
+            label: |
+              [[[ 
+              var d = states['sensor.front_door'].state;
+              return d;
+              ]]]
+            variables:
+              hhh: 160px
+              www: 160px
+            style: |
+              ha-card {
+                --ha-card-background: []
+              }
+          - type: custom:button-card
+            entity: binary_sensor.balcony_sensor_1_contact
+            template:
+              - sensor_looks
+              - labeltop_looks
+            name: Balcony 1
+            icon: mdi:door-sliding-lock
+            show_label: true
+            variables:
+              hhh: 160px
+              www: 160px
+          - type: custom:button-card
+            entity: binary_sensor.balcony_sensor_2_contact
+            template:
+              - sensor_looks
+              - labeltop_looks
+            name: Balcony 2
+            icon: mdi:door-sliding-lock
+            show_label: true
+            variables:
+              hhh: 160px
+              www: 160px
+        square: false

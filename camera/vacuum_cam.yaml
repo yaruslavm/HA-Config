@@ -1,0 +1,43 @@
+- platform: xiaomi_cloud_map_extractor
+  host: !secret xiaomi_vacuum_host
+  token: !secret xiaomi_vacuum_token
+  username: !secret xiaomi_cloud_username
+  password: !secret xiaomi_cloud_password
+  country: "sg"
+  name: "My Vacuum Camera"
+  colors:
+    color_map_outside: [55, 70, 79]
+    color_map_wall_v2: [0, 0, 0]
+    color_path: [255, 255, 255]
+  room_colors:
+    6: [220, 220, 220] # bathroom 1
+    10: [220, 220, 220] # bathroom 2
+    16: [220, 220, 220] # dining room
+    17: [220, 220, 220] # kitchen
+    18: [220, 220, 220] # ?
+    19: [220, 220, 220] # hall
+    20: [220, 220, 220] # Study
+    21: [220, 220, 220] #living room
+    22: [220, 220, 220] #bedroom
+    23: [220, 220, 220] # ?
+    24: [220, 220, 220] #entrance
+    25: [220, 220, 220] #closet
+  draw: ["all"]
+  map_transformation:
+    rotate: 90
+  attributes:
+    - calibration_points
+    - walls
+    - zones
+    - goto
+    - goto_path
+    - goto_predicted_path
+    - room_numbers
+    - rooms
+    - vacuum_position
+  scan_interval:
+    seconds: 30
+  auto_update: true
+  store_map_raw: false
+  store_map_image: true
+  store_map_path: "/tmp"

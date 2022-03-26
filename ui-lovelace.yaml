@@ -1,0 +1,13 @@
+button_card_templates: !include ui_templates/button_card_templates.yaml
+decluttering_templates: !include ui_templates/mini_graph.yaml
+kiosk_mode:
+  user_settings:
+    - users:
+        - "Tablet"
+      hide_header: true
+      hide_overflow: true
+
+views:
+  - !include ui_views/tabletoverview.yaml
+  - !include ui_views/tabletlights.yaml
+  - !include ui_views/shutters.yaml

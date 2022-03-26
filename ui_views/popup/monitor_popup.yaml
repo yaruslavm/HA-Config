@@ -1,0 +1,197 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: "Monitor"
+  style:
+    .: |
+      :host {
+        --ha-card-background: #37464f;
+        --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+        --mdc-theme-surface: #37464f;
+        --ha-card-header-font-size: 18px;
+        --ha-card-border-radius: 15px;
+      }
+      :host .content {
+      width: 1200px;
+      margin: -20px -24px;
+        }
+  card:
+    type: horizontal-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: entities
+                title: HA VM
+                show_header_toggle: false
+                style: |
+                  ha-card {
+                    background-color: rgba(0, 0, 0, 0);
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                  }
+                  ha-card .card-header {
+                      padding: 1px 20px 1px;
+                  }
+                  h1.card-header {
+                      padding: 1px 25px 1px;
+                  }
+                entities:
+                  - entity: sensor.processor_use
+                    icon: mdi:cpu-64-bit
+                    name: CPU Usage
+                  - entity: sensor.memory_use_percent
+                    icon: mdi:memory
+                    name: RAM Usage
+                  - entity: sensor.disk_use_percent
+                    icon: mdi:harddisk
+                    name: SSD Space Used
+              - type: entities
+                title: Intel Nuc (I5-4250U)
+                show_header_toggle: false
+                style: |
+                  ha-card {
+                    background-color: rgba(0, 0, 0, 0);
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                  }
+                  ha-card .card-header {
+                      padding: 1px 20px 1px;
+                  }
+                  h1.card-header {
+                      padding: 1px 25px 1px;
+                  }
+                entities:
+                  - entity: sensor.livingroom_pc_intel_core_i5_4250u_load_cpu_total
+                    icon: mdi:cpu-64-bit
+                    name: CPU Usage
+                  - entity: sensor.livingroom_pc_intel_d54250wyk_nuvoton_nct6776f_temperatures_cpu_core
+                    icon: mdi:thermometer
+                    name: CPU Temp
+                  - entity: sensor.livingroom_pc_generic_memory_load_memory
+                    icon: mdi:memory
+                    name: RAM Usage
+                  - entity: sensor.livingroom_pc_kingston_sv300s37a240g_load_used_space
+                    icon: mdi:harddisk
+                    name: SSD Space Used
+                  - entity: sensor.livingroom_pc_kingston_sv300s37a240g_temperatures_temperature
+                    icon: mdi:harddisk
+                    name: SSD Temp
+                  - entity: sensor.livingroom_pc_kingston_sv300s37a240g_levels_remaining_life
+                    icon: mdi:harddisk
+                    name: SSD Life
+              - type: "custom:decluttering-card"
+                template: embed_graph_looks
+                variables:
+                  - SENSOR: sensor.livingroom_pc_intel_d54250wyk_nuvoton_nct6776f_fans_fan_2
+                  - ICON: mdi:fan
+                  - NAME: Nuc Fan
+                  - HEIGHT: 127
+                  - FILL: true
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: entities
+                title: Network
+                show_header_toggle: false
+                style: |
+                  ha-card {
+                    background-color: rgba(0, 0, 0, 0);
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                  }
+                  ha-card .card-header {
+                      padding: 1px 20px 1px;
+                  }
+                  h1.card-header {
+                      padding: 1px 25px 1px;
+                  }
+                entities:
+                  - entity: sensor.ipv4_address_enp0s3
+                    name: NAT IP
+                    icon: mdi:ip-network
+                  - entity: sensor.myip
+                    name: Public IP
+                    icon: mdi:ip-network
+                  - entity: sensor.speedtest_ping
+                  - entity: sensor.adguard_average_processing_speed
+                  - entity: sensor.network_in_enp0s3
+                  - entity: sensor.network_out_enp0s3
+                  - type: divider
+                  - entity: sensor.speedtest_ping
+                  - entity: sensor.speedtest_ping
+                  - entity: sensor.speedtest_ping
+                  - entity: sensor.speedtest_ping
+                    name: placeholder
+              - type: "custom:decluttering-card"
+                template: embed_2graph_looks
+                variables:
+                  - SENSOR: sensor.speedtest_download
+                  - SENSOR2: sensor.speedtest_upload
+                  - ICON: mdi:speedometer-medium
+                  - NAME: "Network Speed"
+                  - HEIGHT: 103
+                  - FILL: true
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: entities
+                title: AdGuard Global
+                show_header_toggle: false
+                state_color: true
+                style: |
+                  ha-card {
+                    background-color: rgba(0, 0, 0, 0);
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                  }
+                  ha-card .card-header {
+                      padding: 1px 20px 1px;
+                  }
+                  h1.card-header {
+                      padding: 1px 25px 1px;
+                  }
+                entities:
+                  - switch.adguard_protection
+                  - switch.adguard_filtering
+                  - sensor.adguard_dns_queries_blocked_ratio
+              - type: entities
+                title: AdGuard Features
+                show_header_toggle: false
+                state_color: true
+                style: |
+                  ha-card {
+                    background-color: rgba(0, 0, 0, 0);
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                  }
+                  ha-card .card-header {
+                      padding: 1px 20px 1px;
+                  }
+                  h1.card-header {
+                      padding: 1px 25px 1px;
+                  }
+                entities:
+                  - switch.adguard_parental_control
+                  - sensor.adguard_parental_control_blocked
+                  - switch.adguard_safe_browsing
+                  - sensor.adguard_safe_browsing_blocked
+                  - switch.adguard_safe_search
+                  - sensor.adguard_safe_searches_enforced
+              - type: "custom:decluttering-card"
+                template: embed_2graph_looks
+                variables:
+                  - SENSOR: sensor.adguard_dns_queries
+                  - SENSOR2: sensor.adguard_dns_queries_blocked
+                  - ICON: mdi:shield-check
+                  - NAME: "DNS Queries"
+                  - HEIGHT: 101
+                  - FILL: true

@@ -1,0 +1,105 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: Electricity Details
+  style:
+    .: |
+      :host {
+        --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+        --mdc-theme-surface: #37464f;
+        --ha-card-header-font-size: 18px;
+        --ha-card-border-radius: 15px;
+        --horizontal-stack-card-margin: 0px 0px
+        --stack-card-margin: 0px 0;
+      }
+      :host .content {
+      width: 700px;
+      margin: -20px -24px;
+        }
+  card:
+    type: horizontal-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Daily
+            style:
+              .: |
+                :host {
+                  --ha-card-border-radius: 0px;
+                }
+                ha-card {
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none;
+                  box-shadow: none;
+                  text-align: left;
+                  background-color: transparent;
+                }
+                ha-card .card-header {
+                    padding: 1px 20px 1px;
+                }
+                h1.card-header {
+                    padding: 1px 25px 1px;
+                }
+            entities:
+              - entity: sensor.bathroom_pir_battery
+                secondary_info: last-changed
+                name: Current Consumption(W)
+              - entity: sensor.hall_pir_battery
+                name: Today's Cost
+              - type: divider
+              - entity: sensor.closet_pir_battery
+                name: Previos Day total
+              - entity: sensor.kitchen_pir_battery
+                name: Previos Day Cost
+          - type: "custom:decluttering-card"
+            template: energy_graph_looks
+            variables:
+              - SENSOR: sensor.electricity_daily_khw
+              - ICON: mdi:lightning-bolt-circle
+              - NAME: Current
+              - TYPE: bar
+              - WIDTH: 350px
+
+        state_color: true
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Monthly
+            style:
+              .: |
+                :host {
+                  --ha-card-border-radius: 0px;
+                }
+                ha-card {
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none;
+                  box-shadow: none;
+                  text-align: left;
+                  background-color: transparent;
+                }
+                ha-card .card-header {
+                    padding: 1px 20px 1px;
+                }
+                h1.card-header {
+                    padding: 1px 25px 1px;
+                }
+            entities:
+              - entity: sensor.bathroom_pir_battery
+                secondary_info: last-changed
+                name: This Month
+              - entity: sensor.hall_pir_battery
+                name: This Month Cost
+              - type: divider
+              - entity: sensor.closet_pir_battery
+                name: Previos Month
+              - entity: sensor.kitchen_pir_battery
+                name: Previos Month Cost
+          - type: "custom:decluttering-card"
+            template: energy_graph_looks
+            variables:
+              - SENSOR: sensor.electricity_daily_khw
+              - ICON: mdi:lightning-bolt-circle
+              - NAME: Last 7 Days
+              - TYPE: bar
+              - WIDTH: 350px

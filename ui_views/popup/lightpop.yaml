@@ -1,0 +1,220 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: Configuration
+  style:
+    $: |
+      :host {
+        --mdc-theme-surface: rgba(235, 234, 234, 0.8);
+        --mdc-dialog-scrim-color: rgba(0, 0, 0, 0.8);
+        --ha-card-background: rgba(255, 255, 255, 1);
+        --secondary-background-color: rgba(0,0,0,0);
+        --ha-card-header-font-size: 18px;
+        --ha-card-border-radius: 15px;
+      }
+      .mdc-dialog .mdc-dialog__surface {
+        background-color: var(--primary-background-color) !important;
+      }
+    hui-vertical-stack-card:
+      $: |
+        #root {
+          padding: 0 1rem 0 1rem;
+        }
+        .text-content {
+          text-align: center !important;
+        }
+      $hui-entities-card:
+        $: |
+          div#states.card-content {
+            padding: 0;
+          }
+      $button-card:
+        $hui-horizontal-stack-card:
+          $: |
+            #root {
+              display: flex;
+              justify-content: center;
+            }
+        $slider-entity-row:
+          $hui-generic-entity-row:
+            $: |
+              div.text-content {
+                text-align: center;
+              }
+  card:
+    type: vertical-stack
+    cards:
+      - type: entities
+        entities:
+          - entity: "[[[ return entity.entity_id ]]]"
+            secondary_info: last-changed
+        style: |
+          ha-card {
+            margin-top: 10px;
+            padding: 0 0px 0 0px;
+            box-shadow: none;
+            background-color: transparent;
+            overflow: hidden;
+            justify-content: left;
+          }
+      - type: custom:slider-entity-row
+        entity: |
+          [[[ return entity.entity_id ]]]
+        name: Brighness
+        icon: mdi:weather-sunny
+        toggle: false
+        hide_when_off: true
+        style: |
+          ha-card {
+            box-shadow: none;
+            background-color: transparent;
+            overflow: hidden;
+            justify-content: left;
+          }
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: "[[[ return entity.entity_id ]]]"
+            name: Relax
+            icon: mdi:checkbox-blank-circle
+            style: |
+              ha-card {
+                box-shadow: none;
+                background-color: transparent;
+                overflow: hidden;
+              }
+            styles:
+              name:
+                - justify-self: center
+                - padding-left: 25px
+                - font-size: 12px
+              icon:
+                - color: "#6b421c"
+                - align-items: start
+                - align-self: start
+                - width: 70%
+                - margin-top: "0%"
+                - margin-right: 0%
+            tap_action:
+              action: call-service
+              service: light.turn_on
+              service_data:
+                entity_id: |
+                  [[[ return entity.entity_id ]]]
+                color_temp: 500
+          - type: custom:button-card
+            entity: "[[[ return entity.entity_id ]]]"
+            name: Warm
+            icon: mdi:checkbox-blank-circle
+            style: |
+              ha-card {
+                box-shadow: none;
+                background-color: transparent;
+                overflow: hidden;
+              }
+            styles:
+              name:
+                - justify-self: center
+                - padding-left: 25px
+                - font-size: 12px
+              icon:
+                - color: "#ba7d45"
+                - align-items: start
+                - align-self: start
+                - width: 70%
+                - margin-top: "0%"
+                - margin-right: 0%
+            tap_action:
+              action: call-service
+              service: light.turn_on
+              service_data:
+                entity_id: |
+                  [[[ return entity.entity_id ]]]
+                color_temp: 326
+          - type: custom:button-card
+            entity: "[[[ return entity.entity_id ]]]"
+            name: Bright
+            icon: mdi:checkbox-blank-circle
+            style: |
+              ha-card {
+                padding: 0 20px 0 20px;
+                box-shadow: none;
+                background-color: transparent;
+                overflow: hidden;
+                justify-content: left;
+              }
+            styles:
+              name:
+                - justify-self: center
+                - padding-left: 25px
+                - font-size: 12px
+              icon:
+                - color: "#dbb28c"
+                - align-items: start
+                - align-self: start
+                - width: 70%
+                - margin-top: "0%"
+                - margin-right: 0%
+            tap_action:
+              action: call-service
+              service: light.turn_on
+              service_data:
+                entity_id: |
+                  [[[ return entity.entity_id ]]]
+                color_temp: 253
+          - type: custom:button-card
+            entity: "[[[ return entity.entity_id ]]]"
+            name: Day
+            icon: mdi:checkbox-blank-circle
+            style: |
+              ha-card {
+                padding: 0 20px 0 20px;
+                box-shadow: none;
+                background-color: transparent;
+                overflow: hidden;
+                justify-content: left;
+              }
+            styles:
+              name:
+                - justify-self: center
+                - padding-left: 25px
+                - font-size: 12px
+              icon:
+                - color: "#f0ebe6"
+                - align-items: start
+                - align-self: start
+                - width: 70%
+                - margin-top: "0%"
+                - margin-right: 0%
+            tap_action:
+              action: call-service
+              service: light.turn_on
+              service_data:
+                entity_id: |
+                  [[[ return entity.entity_id ]]]
+                color_temp: 153
+      - type: custom:light-entity-card
+        card_mod:
+          style: |
+            ha-card {
+              box-shadow: none;
+              background-color: transparent;
+            }
+            .light-entity-card__header {
+              padding: 0 20px 0 20px;
+            }
+            .light-entity-card-sliders {
+              padding: 0 20px 0 20px;
+            }
+        entity: "[[[ return entity.entity_id ]]]"
+        brightness: false
+        color_temp: false
+        white_value: true
+        full_width_sliders: false
+        hide_header: true
+        show_slider_percent: true
+        smooth_color_wheel: true
+        persist_features: true
+        consolidate_entities: false
+        child_card: true
+        effects_list: false

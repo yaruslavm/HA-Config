@@ -1,0 +1,247 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: "Monitor"
+  style:
+    .: |
+      :host {
+        --ha-card-background: #37464f;
+        --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+        --mdc-theme-surface: #37464f;
+        --ha-card-header-font-size: 18px;
+        --ha-card-border-radius: 15px;
+      }
+      :host .content {
+      width: 1040px;
+      margin: -20px -24px;
+        }
+  card:
+    type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        view_layout:
+          grid-area: one
+        cards:
+          - type: horizontal-stack
+            title: Home Assistant
+            cards:
+              - type: "custom:decluttering-card"
+                template: mon_graph_looks
+                variables:
+                  - SENSOR: sensor.processor_use
+                  - ICON: mdi:cpu-64-bit
+                  - NAME: CPU
+                  - HEIGHT: 82
+                  - FILL: true
+                  - BKGRD: "#ffffff"
+              - type: "custom:decluttering-card"
+                template: mon_graph_looks
+                variables:
+                  - SENSOR: sensor.memory_use_percent
+                  - ICON: mdi:memory
+                  - NAME: RAM
+                  - HEIGHT: 82
+                  - FILL: true
+                  - BKGRD: "#ffffff"
+              - type: "custom:decluttering-card"
+                template: mon_graph_looks
+                variables:
+                  - SENSOR: sensor.disk_use_percent
+                  - ICON: mdi:harddisk
+                  - NAME: SSD
+                  - HEIGHT: 82
+                  - FILL: true
+                  - BKGRD: "#ffffff"
+            square: false
+          - type: vertical-stack
+            title: IP Adresses
+            cards:
+              - type: entities
+                show_header_toggle: false
+                entities:
+                  - entity: sensor.ipv4_address_enp0s3
+                    name: NAT IP
+                    icon: mdi:ip-network
+                  - entity: sensor.myip
+                    name: Public IP
+                    icon: mdi:ip-network
+                style: |
+                  ha-card {
+                    background-color: #37464f;
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                  }
+
+      - type: horizontal-stack
+        cards:
+          - type: horizontal-stack
+            title: Nuc (I5-4250U)
+            cards:
+              - type: "custom:decluttering-card"
+                template: mon_graph_looks
+                variables:
+                  - SENSOR: sensor.livingroom_pc_intel_core_i5_4250u_load_cpu_total
+                  - ICON: mdi:cpu-64-bit
+                  - NAME: CPU
+                  - HEIGHT: 82
+                  - FILL: true
+                  - BKGRD: "#ffffff"
+              - type: "custom:decluttering-card"
+                template: mon_graph_looks
+                variables:
+                  - SENSOR: sensor.livingroom_pc_intel_d54250wyk_nuvoton_nct6776f_temperatures_cpu_core
+                  - ICON: mdi:thermometer
+                  - NAME: CPU temp
+                  - HEIGHT: 82
+                  - FILL: true
+                  - BKGRD: "#ffffff"
+              - type: "custom:decluttering-card"
+                template: mon_graph_looks
+                variables:
+                  - SENSOR: sensor.livingroom_pc_generic_memory_load_memory
+                  - ICON: mdi:memory
+                  - NAME: RAM
+                  - HEIGHT: 82
+                  - FILL: true
+          - type: horizontal-stack
+            title: Network
+            cards:
+              - type: "custom:decluttering-card"
+                template: mon_graph_looks
+                variables:
+                  - SENSOR: sensor.speedtest_ping
+                  - ICON: mdi:speedometer
+                  - NAME: Ping
+                  - HEIGHT: 82
+                  - FILL: true
+                  - BKGRD: "#ffffff"
+              - type: "custom:decluttering-card"
+                template: mon_graph_looks
+                variables:
+                  - SENSOR: sensor.speedtest_download
+                  - ICON: mdi:speedometer
+                  - NAME: Download
+                  - HEIGHT: 82
+                  - FILL: true
+                  - BKGRD: "#ffffff"
+              - type: "custom:decluttering-card"
+                template: mon_graph_looks
+                variables:
+                  - SENSOR: sensor.speedtest_upload
+                  - ICON: mdi:speedometer
+                  - NAME: Upload
+                  - HEIGHT: 82
+                  - FILL: true
+                  - BKGRD: "#ffffff"
+            square: false
+      - type: horizontal-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:decluttering-card"
+                template: mon_graph_looks
+                variables:
+                  - SENSOR: sensor.livingroom_pc_kingston_sv300s37a240g_load_used_space
+                  - ICON: mdi:harddisk
+                  - NAME: SSD
+                  - HEIGHT: 120
+                  - FILL: true
+                  - BKGRD: "#ffffff"
+              - type: "custom:decluttering-card"
+                template: mon_graph_looks
+                variables:
+                  - SENSOR: sensor.livingroom_pc_kingston_sv300s37a240g_temperatures_temperature
+                  - ICON: mdi:harddisk
+                  - NAME: SSD temp
+                  - HEIGHT: 120
+                  - FILL: true
+                  - BKGRD: "#ffffff"
+              - type: "custom:decluttering-card"
+                template: mon_graph_looks
+                variables:
+                  - SENSOR: sensor.livingroom_pc_kingston_sv300s37a240g_levels_remaining_life
+                  - ICON: mdi:harddisk
+                  - NAME: SSD Life
+                  - HEIGHT: 120
+                  - FILL: true
+                  - BKGRD: "#ffffff"
+          - type: horizontal-stack
+            cards:
+              - type: "custom:decluttering-card"
+                template: mon_graph_looks
+                variables:
+                  - SENSOR: sensor.network_in_enp0s3
+                  - ICON: mdi:server-network
+                  - NAME: Network In
+                  - HEIGHT: 82
+                  - FILL: true
+                  - BKGRD: "#ffffff"
+              - type: "custom:decluttering-card"
+                template: mon_graph_looks
+                variables:
+                  - SENSOR: sensor.network_out_enp0s3
+                  - ICON: mdi:server-network
+                  - NAME: Network out
+                  - HEIGHT: 82
+                  - FILL: true
+                  - BKGRD: "#ffffff"
+            square: false
+
+      - type: "custom:mini-graph-card"
+        view_layout:
+          grid-area: b
+        entities:
+          - entity: "sensor.livingroom_pc_intel_d54250wyk_nuvoton_nct6776f_fans_fan_2"
+            name: Nuc Cooling Fan
+        icon: mdi:fan
+        align_icon: left
+        align_state: right
+        align_header: left
+        unit: ""
+        group: false
+        hours_to_show: 6
+        update_interval: 600
+        points_per_hour: 6
+        animate: false
+        font_size: 70
+        line_width: 2
+        line_color: var(--accent-color)
+        hour24: true
+        smoothing: false
+        height: 40
+        show:
+          name: true
+          fill: true
+          graph: line
+          icon: true
+          state: true
+          labels: hover
+          points: hover
+          legend: false
+          extrema: false
+          name_adaptive_color: false
+          icon_adaptive_color: false
+          labels_secondary: false
+        color_thresholds:
+          - value: 2000
+            color: "#b4b7b8"
+          - value: 3300
+            color: "#b4b7b8"
+        style:
+          .: |
+            :host {
+              --ha-card-border-radius: 0px;
+            }
+            ha-card {
+              -webkit-box-shadow: none;
+              -moz-box-shadow: none;
+              box-shadow: none;
+            }
+            ha-card .states.flex {
+              color: orange;
+            }
+            .header.flex .icon {
+              --mdc-icon-size: 25px;
+              color: orange;
+            }

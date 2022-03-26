@@ -1,0 +1,137 @@
+- id: '1639750280108'
+  alias: (A) Main room Lights ON (16:00)
+  description: Time wakeup
+  trigger:
+  - platform: time
+    at: '16:00:00'
+    id: (T) Evening main room lights
+  condition: []
+  action:
+  - service: light.turn_on
+  mode: single
+- id: '1639838160535'
+  alias: (A) Main room Lights ON (05:30 & 16:00)
+  description: Time wakeup
+  trigger:
+  - platform: time
+    at: 05:30:00
+    id: (T) Evening main room lights
+  - platform: time
+    at: '16:00:00'
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: time
+        after: 05:30:00
+        weekday:
+        - mon
+        - wed
+        - thu
+        - sun
+      sequence:
+      - service: light.turn_on
+        target:
+          device_id:
+          - 581dd0ba9149367b20b6bfecc5103f39
+          - 07afa3b2a5d7a622f134b83bc9bd180e
+    - conditions:
+      - condition: time
+        after: '16:00:00'
+      sequence:
+      - service: light.turn_on
+        target:
+          device_id:
+          - 581dd0ba9149367b20b6bfecc5103f39
+          - 07afa3b2a5d7a622f134b83bc9bd180e
+    default: []
+  mode: single
+- id: '1639925169611'
+  alias: New Automation test1
+  description: ''
+  trigger:
+  - platform: geo_location
+    source: ''
+    zone: zone.home
+    event: enter
+  condition: []
+  action:
+  - service: light.turn_on
+  mode: single
+- id: '1643388279450'
+  alias: Disable vacuum camera update when docked
+  description: ''
+  use_blueprint:
+    path: PiotrMachowski/disable_vacuum_camera_update_when_docked.yaml
+    input:
+      vacuum: vacuum.roborock_s7
+      camera: camera.my_vacuum_camera
+- id: '1644853000314'
+  alias: Aqara Magic Cube (Z2M)
+  description: ''
+  use_blueprint:
+    path: luckypoppy/z2m-xiaomi-cube-controller.yaml
+    input:
+      remote: sensor.magic_cube_action
+      shake:
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id:
+          - light.study_lamp
+          - light.living_lamp
+          - light.0xa4c138d12ab80a11
+      rotate_cw_face_0:
+      - service: light.turn_on
+        target:
+          entity_id:
+          - light.0xa4c138d12ab80a11
+          - light.living_lamp
+        data:
+          brightness_step_pct: 20
+      rotate_ccw_face_0:
+      - service: light.turn_on
+        target:
+          device_id:
+          - 04b0d8cbb5c2a358d6a9c0275c122266
+          - 507115872674888ebde4c091eba228c6
+        data:
+          brightness_step_pct: -20
+      slide_face_3:
+      - service: light.turn_on
+        target:
+          entity_id: light.kitchen_light
+        data: {}
+      doubletap_face_3:
+      - service: light.turn_off
+        target:
+          entity_id: light.kitchen_light
+        data: {}
+      rotate_cw_face_3:
+      - service: light.turn_on
+        data:
+          brightness_step_pct: 20
+        target:
+          entity_id:
+          - light.kitchen_light
+      rotate_ccw_face_3:
+      - service: light.turn_on
+        target:
+          entity_id:
+          - light.kitchen_light
+        data:
+          brightness_step_pct: -20
+      slide_face_0:
+      - service: light.turn_on
+        target:
+          entity_id:
+          - light.0xa4c138d12ab80a11
+          - light.living_lamp
+        data: {}
+      doubletap_face_0:
+      - service: light.turn_off
+        target:
+          entity_id:
+          - light.0xa4c138d12ab80a11
+          - light.living_lamp
+        data: {}

@@ -1,0 +1,236 @@
+title: Shutters & Blinds
+icon: mdi:window-shutter
+type: custom:grid-layout
+layout:
+  grid-gap: var(--custom-layout-card-padding)
+  grid-template-columns: 180px 10px 250px 40px 250px 40px 250px 40px 250px #total space is
+  grid-template-rows: 25px 500px 250px
+  grid-template-areas: |
+    "nav . . . . . . . ."
+    "nav . one . two . three . four"
+    "mnav. mone . mtwo . mthree . mfour"
+visible:
+  - user: ba49ce3365aa4d5b9ff34edbfc2b90d3 #yar
+  - user: 027d3e5198054dacb5b209a29a06a347 #tablet
+badges: []
+background: >-
+  center / cover no-repeat
+  url("/local/images/9_12.png")
+  fixed
+#background: "right/auto linear-gradient(23deg, rgba(240, 240, 240, 1) 15%, rgba(160, 160, 160, 1) 45%, rgba(211, 211, 211, 1) 100%)"
+cards:
+  - type: grid
+    title: []
+    columns: 1
+    cards:
+      - type: custom:button-card
+        icon: mdi:backburger
+        size: 30%
+        name: Overview
+        styles:
+          card:
+            - margin-top: 5px
+            - color: rgba(0, 0, 0, 0)
+            - width: fit-content
+            - background: rgba(0, 0, 0, 0)
+            - border: 0.12vw rgba(0, 0, 0, 0)
+            - transition: none
+            - padding: 0 0 0.05vw 0
+            - overflow: visible
+            - --mdc-ripple-color: rgba(0, 0, 0, 0.8)
+            - --paper-card-background-color: rgba(0, 0, 0, 0.0)
+            - box-shadow: "none"
+            - height: 160px
+            - width: 160px
+          icon:
+            - color: orange
+          name:
+            - color: white
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/0
+      - type: custom:button-card
+        icon: mdi:lightbulb
+        size: 30%
+        name: Lights
+        styles:
+          card:
+            - margin-top: 5px
+            - color: rgba(0, 0, 0, 0)
+            - width: fit-content
+            - background: rgba(0, 0, 0, 0)
+            - border: 0.12vw rgba(0, 0, 0, 0)
+            - transition: none
+            - padding: 0 0 0.05vw 0
+            - overflow: visible
+            - --mdc-ripple-color: rgba(0, 0, 0, 0.8)
+            - --paper-card-background-color: rgba(0, 0, 0, 0.0)
+            - box-shadow: "none"
+            - height: 160px
+            - width: 160px
+          icon:
+            - color: orange
+          name:
+            - color: white
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/1
+    square: false
+    view_layout:
+      grid-area: nav
+  - type: grid
+    title: Bedroom
+    columns: 1
+    cards:
+      - type: "custom:shutter-card"
+        title: []
+        style: |
+          ha-card {
+            background-color: rgba(0, 0, 0, 0);
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+          }
+          ha-card .card-header {
+              padding: 1px 20px 1px;
+          }
+          h1.card-header {
+              padding: 1px 25px 1px;
+          }
+        entities:
+          - entity: cover.bedroom_blinds_1
+            name: Sea View
+            buttons_position: left
+            title_position: top
+            invert_percentage: false
+      - type: "custom:shutter-card"
+        title: []
+        entities:
+          - entity: cover.bedroom_blinds_1
+            name: View
+            buttons_position: left
+            title_position: top
+    square: false
+    view_layout:
+      grid-area: one
+  - type: grid
+    title: Living Room
+    columns: 1
+    cards:
+      - type: "custom:shutter-card"
+        title: []
+        style: |
+          ha-card {
+            background-color: rgba(0, 0, 0, 0);
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+          }
+          ha-card .card-header {
+              padding: 1px 20px 1px;
+          }
+          h1.card-header {
+              padding: 1px 25px 1px;
+          }
+        entities:
+          - entity: cover.bedroom_blinds_1
+            name: Parking View
+            buttons_position: left
+            title_position: top
+      - type: "custom:shutter-card"
+        title: []
+        entities:
+          - entity: cover.bedroom_blinds_1
+            name: View
+            buttons_position: left
+            title_position: top
+    square: false
+    view_layout:
+      grid-area: two
+  - type: grid
+    title: Dining Room
+    columns: 1
+    cards:
+      - type: "custom:shutter-card"
+        title: []
+        style: |
+          ha-card {
+            background-color: rgba(0, 0, 0, 0);
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+          }
+          ha-card .card-header {
+              padding: 1px 20px 1px;
+          }
+          h1.card-header {
+              padding: 1px 25px 1px;
+          }
+        entities:
+          - entity: cover.bedroom_blinds_1
+            name: Parking View
+            buttons_position: left
+            title_position: top
+      - type: "custom:shutter-card"
+        title: []
+        entities:
+          - entity: cover.bedroom_blinds_1
+            name: View
+            buttons_position: left
+            title_position: top
+    square: false
+    view_layout:
+      grid-area: three
+  - type: grid
+    title: Study Room
+    columns: 1
+    cards:
+      - type: "custom:shutter-card"
+        title: []
+        style: |
+          ha-card {
+            background-color: rgba(0, 0, 0, 0);
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+          }
+          ha-card .card-header {
+              padding: 1px 25px 1px;
+          }
+          h1.card-header {
+              padding: 1px 25px 1px;
+          }
+        entities:
+          - entity: cover.bedroom_blinds_1
+            name: View
+            buttons_position: left
+            title_position: top
+    square: false
+    view_layout:
+      grid-area: mone
+  - type: grid
+    title: Kitchen
+    columns: 1
+    cards:
+      - type: "custom:shutter-card"
+        title: []
+        style: |
+          ha-card {
+            background-color: rgba(0, 0, 0, 0);
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+          }
+          ha-card .card-header {
+              padding: 1px 20px 1px;
+          }
+          h1.card-header {
+              padding: 1px 25px 1px;
+          }
+        entities:
+          - entity: cover.bedroom_blinds_1
+            name: View
+            buttons_position: left
+            title_position: top
+    view_layout:
+      grid-area: mtwo

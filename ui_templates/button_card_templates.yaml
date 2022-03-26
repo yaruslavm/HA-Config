@@ -1,0 +1,363 @@
+light_popup:
+  template:
+    - light_looks
+  hold_action: !include ../ui_views/popup/lightpop.yaml
+
+light_looks:
+  icon: mdi:lightbulb
+  show_state: true
+  show_label: true
+  label: |
+    [[[
+      var bri = entity.attributes.brightness;
+      return parseInt(bri ? bri/2.55 : '0') + '%';
+    ]]]
+  styles:
+    card:
+      - width: "[[[ return variables.www ]]]"
+      - height: "[[[ return variables.hhh ]]]"
+      - background-color: "#ffffff"
+      - border-radius: 5%
+      - padding: 10%
+      - color: black
+      - text-transform: capitalize
+    grid:
+      - grid-template-areas: '"i" "n" "s" "l"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 1fr min-content min-content min-content min-content
+    img_cell:
+      - align-self: start
+      - text-align: start
+    name:
+      - justify-self: start
+      - padding-left: 5px
+      - font-weight: bold
+      - font-size: 15px
+    state:
+      - justify-self: start
+      - padding-left: 5px
+      - font-size: 16px
+    label:
+      - font-size: 15px
+      - font-weight: bold
+      - justify-self: end
+      - margin-top: "-160%"
+    icon:
+      - color: var(--button-card-light-color)
+      - align-items: start
+      - align-self: start
+      - width: 40%
+      - margin-top: "-12%"
+      - margin-right: 70%
+  state:
+    - value: "off"
+      styles:
+        card:
+          - filter: opacity(40%)
+        icon:
+          - filter: grayscale(100%)
+        label:
+          - filter: opacity(0%)
+    - value: unavailable
+      styles:
+        card:
+          - filter: opacity(20%)
+          - background-color: "#A81419"
+        icon:
+          - filter: grayscale(50%)
+labeltop_looks:
+  show_state: true
+  styles:
+    label:
+      - font-size: 12px
+      - padding-right: 5px
+      - justify-self: right
+      - font-weight: bold
+      - margin-top: "-160%"
+labelnorm_looks:
+  show_state: true
+  styles:
+    label:
+      - font-size: 11px
+      - padding-left: 5px
+      - justify-self: left
+      - margin-top: 0%
+sensor_looks:
+  show_state: true
+  styles:
+    card:
+      - width: 160px
+      - height: 160px
+      - background-color: []
+      - border-radius: 5%
+      - padding: 10%
+      - text-transform: capitalize
+      - background-color: "#3b3a3a"
+    grid:
+      - grid-template-areas: '"i" "n" "s" "l"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 1fr min-content min-content min-content min-content
+    img_cell:
+      - align-self: start
+      - text-align: start
+    name:
+      - justify-self: start
+      - padding-left: 0px
+      - font-weight: bold
+      - font-size: 14px
+    state:
+      - justify-self: start
+      - padding-left: 5px
+      - font-size: 11px
+      - text-transform: capitalize
+      - font-weight: bold
+    icon:
+      - color: var(--button-card-light-color)
+      - align-items: start
+      - align-self: start
+      - width: 40%
+      - margin-top: "-12%"
+      - margin-right: 65%
+  state:
+    - value: "on"
+      icon: mdi:lock-open-variant-outline
+      styles:
+        card:
+          - opacity: 1
+        label:
+          - color: black
+        icon:
+          - color: "#e8000c"
+    - value: "off"
+      styles:
+        card:
+          - opacity: 1
+        icon:
+          - color: "#f39c12"
+    - value: unavailable
+      styles:
+        card:
+          - filter: opacity(50%)
+          - background-color: "#A81419"
+        icon:
+          - filter: grayscale(100%)
+sensorpir_looks:
+  icon: mdi:motion-sensor
+  show_state: true
+  styles:
+    card:
+      - width: "[[[ return variables.www ]]]"
+      - height: "[[[ return variables.hhh ]]]"
+      - background-color: "#ffffff"
+      - border-radius: 5%
+      - padding: 10%
+      - color: black
+      - text-transform: capitalize
+    grid:
+      - grid-template-areas: '"i" "n" "s" "l"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 1fr min-content min-content min-content min-content
+    img_cell:
+      - align-self: start
+      - text-align: start
+    name:
+      - justify-self: start
+      - padding-left: 5px
+      - font-weight: bold
+      - font-size: 15px
+    state:
+      - justify-self: start
+      - padding-left: 5px
+      - font-size: 16px
+    label:
+      - font-size: 11px
+      - padding-left: 5px
+      - justify-self: left
+      - margin-top: 0%
+    icon:
+      - color: var(--button-card-light-color)
+      - align-items: start
+      - align-self: start
+      - width: 40%
+      - margin-top: "[[[ return variables.mt ]]]"
+      - margin-right: 70%
+  state:
+    - value: "on"
+      icon: mdi:motion-sensor
+      styles:
+        icon:
+          - color: "#f39c12"
+    - value: "off"
+      icon: mdi:walk
+      styles:
+        card:
+          - filter: opacity(40%)
+        icon:
+          - filter: grayscale(100%)
+    - value: unavailable
+      styles:
+        card:
+          - filter: opacity(20%)
+          - background-color: "#f39c12"
+        icon:
+          - filter: grayscale(100%)
+small_looks:
+  show_state: false
+  styles:
+    card:
+      - width: 95px
+      - height: 81px
+      - background-color: "#ffffff"
+      - border-radius: 5%
+      - color: black
+      - text-transform: capitalize
+battery_looks:
+  show_state: false
+  styles:
+    card:
+      - width: 160px
+      - height: 160px
+      - background-color: "#2e2d2b"
+      - border-radius: 5%
+      - padding: 10%
+      - color: black
+      - text-transform: capitalize
+    grid:
+      - grid-template-areas: '"i" "n" "s" "l"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 1fr min-content min-content min-content min-content
+    img_cell:
+      - align-self: start
+      - text-align: start
+    name:
+      - justify-self: start
+      - padding-left: 0px
+      - font-weight: bold
+      - font-size: 14px
+    state:
+      - justify-self: start
+      - padding-left: 5px
+      - font-size: 11px
+      - text-transform: capitalize
+      - font-weight: bold
+    icon:
+      - color: var(--button-card-light-color)
+      - align-items: start
+      - align-self: start
+      - width: 40%
+      - margin-top: "-12%"
+      - margin-right: 65%
+switch_looks:
+  show_state: true
+  styles:
+    card:
+      - width: "[[[ return variables.www ]]]"
+      - height: "[[[ return variables.hhh ]]]"
+      - background-color: "#2e2d2b"
+      - border-radius: 5%
+      - padding: 10%
+      - color: black
+      - text-transform: capitalize
+    grid:
+      - grid-template-areas: '"i" "n" "s" "l"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 1fr min-content min-content min-content min-content
+    img_cell:
+      - align-self: start
+      - text-align: start
+    name:
+      - justify-self: start
+      - padding-left: 5px
+      - font-weight: bold
+      - font-size: 15px
+    state:
+      - justify-self: start
+      - padding-left: 5px
+      - font-size: 16px
+    label:
+      - font-size: 11px
+      - padding-left: 5px
+      - justify-self: left
+      - margin-top: 0%
+    icon:
+      - color: var(--button-card-light-color)
+      - align-items: start
+      - align-self: start
+      - width: 40%
+      - margin-top: "[[[ return variables.mt ]]]"
+      - margin-right: 70%
+  state:
+    - value: "on"
+      styles:
+        icon:
+          - color: "#f39c12"
+    - value: "off"
+      styles:
+        card:
+          - filter: opacity(50%)
+        icon:
+          - filter: grayscale(100%)
+    - value: unavailable
+      styles:
+        card:
+          - filter: opacity(30%)
+          - background-color: "#f39c12"
+        icon:
+          - filter: grayscale(100%)
+
+navigate_button_looks:
+  styles:
+    card:
+      - width: 160px
+      - height: 160px
+      - background-color: []
+      - border-radius: 5%
+      - padding: 10%
+      - text-transform: capitalize
+    grid:
+      - grid-template-areas: '"i" "n" "s" "l"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 1fr min-content min-content min-content min-content
+    name:
+      - justify-self: center
+      - padding-left: 0px
+      - font-weight: bold
+      - font-size: 14px
+    icon:
+      - color: orange
+      - align-items: start
+      - align-self: start
+      - width: 40%
+      - margin-top: "-5%"
+      - margin-right: 5%
+
+dash_footer_look:
+  styles:
+    card:
+      - margin-top: 5px
+      - color: rgba(0, 0, 0, 0)
+      - width: fit-content
+      - background: rgba(0, 0, 0, 0)
+      - border: 0.12vw rgba(0, 0, 0, 0)
+      - transition: none
+      - padding: 0 0 0.05vw 0
+      - overflow: visible
+      - --mdc-ripple-color: rgba(0, 0, 0, 0.8)
+      - --paper-card-background-color: rgba(0, 0, 0, 0.0)
+      - box-shadow: "none"
+      - height: 120px
+      - width: 120px
+test1:
+  style: |
+    ha-card {
+      background-color: rgba(0, 0, 0, 0);
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
+    ha-card .card-header {
+        padding: 1px 20px 1px;
+    }
+    h1.card-header {
+        padding: 1px 25px 1px;
+    }

@@ -1,0 +1,122 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: "System Information"
+  style:
+    .: |
+      :host {
+        --ha-card-background: #37464f;
+        --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+        --mdc-theme-surface: #37464f;
+        --ha-card-header-font-size: 18px;
+        --ha-card-border-radius: 15px;
+      }
+        hui-vertical-stack-card:
+        $: |
+            #root {
+            margin: 0px 0 0px 0;
+            height: 80%;
+          }
+      :host .content {
+      width: 760px;
+      margin: 1px 4px;
+      height: 80%;
+        }
+  card:
+    type: "horizontal-stack"
+    cards:
+      - type: vertical-stack
+        view_layout:
+          grid-area: two
+        cards:
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: sensor.count_automations
+                name: Automations
+                icon: mdi:autorenew
+              - entity: sensor.count_scripts
+                name: Scripts
+              - type: divider
+              - entity: sensor.count_zones
+                name: Zones
+                icon: mdi:map-marker-radius
+              - entity: sensor.count_device_trackers
+                name: Device Trackers
+                icon: mdi:map-marker
+              - entity: sensor.count_switches
+              - type: divider
+                name: Switches
+                icon: mdi:light-switch
+              - entity: sensor.count_sensors
+                name: Sensors
+                icon: mdi:resistor
+              - entity: sensor.count_binary_sensors
+                name: Binary Sensors
+                icon: mdi:unfold-more-horizontal
+              - type: divider
+              - entity: sensor.count_input_booleans
+                name: Input Booleans
+                icon: mdi:toggle-switch
+              - entity: sensor.count_input_numbers
+                name: Input Numbers
+                icon: mdi:numeric
+              - entity: sensor.count_input_texts
+                name: Input Texts
+                icon: mdi:alphabetical
+              - entity: sensor.count_input_selects
+                name: Input Select
+                icon: mdi:view-list
+              - entity: sensor.count_input_datetimes
+                name: Input Date Times
+                icon: mdi:calendar-clock
+            style: |
+              ha-card {
+                --ha-card-background: #37464f;
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+              }
+      - type: vertical-stack
+        view_layout:
+          grid-area: one
+        cards:
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: binary_sensor.latest_available_version_update_available
+              - entity: sensor.pending_updates
+                name: Addons Updates
+                icon: mdi:update
+              - entity: sensor.hacs
+              - entity: sensor.shelly_update
+                name: New Shelly Update
+                icon: mdi:water-boiler
+              - type: divider
+              - entity: sensor.installed_version
+                name: Hassio Installed Version
+                icon: mdi:home-assistant
+              - entity: sensor.latest_available_version
+                name: Hassio Latest Version
+
+              - type: divider
+              - entity: sensor.uptime
+                name: HA Uptime
+                icon: mdi:home-assistant
+              - entity: sensor.last_boot_date_time
+                icon: mdi:calendar
+              - entity: sensor.rpi_uptime
+                icon: mdi:clock-start
+              - type: divider
+              - entity: binary_sensor.backups_stale
+              - entity: sensor.backup_state
+              - entity: sensor.home_assistant_v2_db
+                icon: mdi:database
+            style: |
+              ha-card {
+                --ha-card-background: #37464f;
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+              }
+            state_color: true

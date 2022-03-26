@@ -1,0 +1,84 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: AC Control
+  style:
+    .: |
+      :host {
+        --ha-card-background: #37464f;
+        --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+        --mdc-theme-surface: #37464f;
+        --ha-card-header-font-size: 18px;
+        --ha-card-border-radius: 15px;
+      }
+  card:
+    type: vertical-stack
+    cards:
+      - type: thermostat
+        entity: "[[CLIMATE]]"
+        style:
+          .: |
+            :host {
+              --ha-card-border-radius: 0px;
+            }
+            ha-card {
+              -webkit-box-shadow: none;
+              -moz-box-shadow: none;
+              box-shadow: none;
+              text-align: left;
+            }
+      - type: entities
+        entities:
+          - entity: "[[HUMI]]"
+            name: Humidity
+        style:
+          .: |
+            :host {
+              --ha-card-border-radius: 0px;
+            }
+            ha-card {
+              -webkit-box-shadow: none;
+              -moz-box-shadow: none;
+              box-shadow: none;
+              text-align: left;
+            }
+      - type: "custom:mini-graph-card"
+        entities:
+          - entity: "[[HUMI]]"
+            name: Humidity
+        align_icon: left
+        align_state: left
+        align_header: left
+        unit: ""
+        group: false
+        hours_to_show: 6
+        update_interval: 600
+        points_per_hour: 6
+        animate: false
+        line_width: 4
+        line_color: var(--accent-color)
+        hour24: true
+        smoothing: false
+        show:
+          name: false
+          fill: true
+          graph: line
+          icon: false
+          state: false
+          labels: hover
+          points: hover
+          legend: false
+          extrema: false
+          name_adaptive_color: false
+          icon_adaptive_color: false
+          labels_secondary: false
+        color_thresholds:
+          - value: 20
+            color: "#b4b7b8"
+          - value: 23
+            color: "#db8a0f"
+        style:
+          .: |
+            :host {
+              --ha-card-border-radius: 0px;
+            }

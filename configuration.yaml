@@ -1,0 +1,131 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+#smartIR update settings
+smartir:
+  check_updates: false
+#loggers
+#logger:
+#  default: info
+#  logs:
+#    custom_components.xiaomi_cloud_map_extractor: debug
+#custome lovelace
+lovelace:
+  mode: yaml
+  resources:
+    [
+      {
+        url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js,
+        type: module,
+      },
+      { url: /hacsfiles/button-card/button-card.js, type: module },
+      { url: /hacsfiles/decluttering-card/decluttering-card.js, type: module },
+      { url: /hacsfiles/kiosk-mode/kiosk-mode.js, type: module },
+      { url: /hacsfiles/light-entity-card/light-entity-card.js, type: module },
+      { url: /hacsfiles/light-popup-card/light-popup-card.js, type: module },
+      { url: /hacsfiles/lovelace-card-mod/card-mod.js, type: module },
+      { url: /hacsfiles/lovelace-layout-card/layout-card.js, type: module },
+      { url: /hacsfiles/weather-card/weather-card.js, type: module },
+      { url: /hacsfiles/simple-thermostat/simple-thermostat.js, type: module },
+      { url: /hacsfiles/hass-shutter-card/hass-shutter-card.js, type: module },
+      {
+        url: /hacsfiles/lovelace-home-feed-card/lovelace-home-feed-card.js,
+        type: module,
+      },
+      {
+        url: /hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js,
+        type: module,
+      },
+      {
+        url: /hacsfiles/lovelace-xiaomi-vacuum-card/xiaomi-vacuum-card.js,
+        type: module,
+      },
+      {
+        url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js,
+        type: module,
+      },
+    ]
+  dashboards:
+    ui-mobile: # Needs to contain a hyphen (-)
+      mode: yaml
+      filename: mobile-lovelace.yaml
+      title: Mobile
+      icon: mdi:cellphone
+      show_in_sidebar: true
+#Themes
+frontend:
+  themes: !include_dir_merge_named themes
+# Text to speech
+tts:
+  - platform: google_translate
+#Browser mode
+browser_mod:
+  prefix: "browser_mod_"
+  devices:
+    7dc1ceec-9544f418:
+      name: desktop_pc
+
+#Google maps tracker
+device_tracker:
+  - platform: google_maps
+    username: "yaroslavmha@gmail.com"
+#====================================
+#=== Needed for DB + monitor
+homeassistant:
+  allowlist_external_dirs:
+    - /config
+recorder:
+  purge_keep_days: 7
+  include:
+    entities:
+      - sensor.livingroom_pc_intel_core_i5_4250u_load_cpu_total
+      - sensor.livingroom_pc_intel_d54250wyk_nuvoton_nct6776f_temperatures_cpu_core
+      - sensor.livingroom_pc_generic_memory_load_memory
+      - sensor.livingroom_pc_kingston_sv300s37a240g_load_used_space
+      - sensor.livingroom_pc_kingston_sv300s37a240g_temperatures_temperature
+      - sensor.livingroom_pc_kingston_sv300s37a240g_levels_remaining_life
+      - sensor.livingroom_pc_intel_d54250wyk_nuvoton_nct6776f_fans_fan_2
+  exclude:
+    domains:
+      - camera
+      - script
+      - sun
+    entity_globs:
+      - sensor.weather_*
+      - sensor.browser_*
+      - sensor.livingroom_pc_*
+    entities:
+      - sensor.packets_in_enp0s3
+      - sensor.packets_out_enp0s3
+      - sensor.network_throughput_in_enp0s3
+      - sensor.network_throughput_out_enp0s3
+      - sensor.rpi_uptime
+      #      - sensor.processor_use
+      - sensor.current_date_time
+      - sensor.date_time
+      - sensor.time
+#===end
+
+#----------------
+# Utility Meter #
+#----------------
+utility_meter:
+  electricity_daily_khw:
+    source: sensor.bedroom_heater_2_energy
+    cycle: daily
+  electricity_monthly_khw:
+    source: sensor.bedroom_heater_2_energy
+    cycle: monthly
+#----------------
+
+#camera for Vacuum
+camera: !include_dir_merge_list camera/
+#custom sensors
+sensor: !include_dir_merge_list sensors/
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+#custom shelly switches
+switch: !include_dir_merge_list switches/
+#broadlink to climate entities
+climate: !include_dir_merge_list climate/

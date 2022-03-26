@@ -1,0 +1,102 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: Misc Items
+  style:
+    .: |
+      :host {
+        --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+        --mdc-theme-surface: #37464f;
+        --ha-card-header-font-size: 18px;
+        --ha-card-border-radius: 15px;
+        --horizontal-stack-card-margin: 0px 0px
+        --stack-card-margin: 0px 0;
+      }
+      :host .content {
+      width: 1000px;
+      margin: -20px -24px;
+        }
+  card:
+    type: horizontal-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Bedroom Sockets
+            style:
+              .: |
+                :host {
+                  --ha-card-border-radius: 0px;
+                }
+                ha-card {
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none;
+                  box-shadow: none;
+                  text-align: left;
+                  background-color: transparent;
+                }
+                h1.card-header {
+                    padding: 1px 25px 10px;
+                }
+            entities:
+              - entity: switch.bedroom_heater_1
+                secondary_info: last-changed
+                name: Irusya sheet heater
+                icon: mdi:power-socket-eu
+              - entity: lock.bedroom_heater_1_child_lock
+                name: Child Lock
+              - entity: sensor.bedroom_heater_1_power
+                name: Active power draw
+
+              - entity: select.bedroom_heater_1_power_outage_memory
+                name: Action after power outage
+              - entity: sensor.bedroom_heater_1_energy
+                name: Energy Sum
+              - type: divider
+              - entity: switch.bedroom_heater_2
+                secondary_info: last-changed
+                name: Yaros sheet heater
+                icon: mdi:power-socket-eu
+              - entity: lock.bedroom_heater_2_child_lock
+                name: Child Lock
+              - entity: sensor.bedroom_heater_2_power
+                name: Active power draw
+
+              - entity: select.bedroom_heater_2_power_outage_memory
+                name: Action after power outage
+              - entity: sensor.bedroom_heater_2_energy
+                name: Energy Sum
+            state_color: true
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: PIR Sensors
+            style:
+              .: |
+                :host {
+                  --ha-card-border-radius: 0px;
+                }
+                ha-card {
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none;
+                  box-shadow: none;
+                  text-align: left;
+                  background-color: transparent;
+                }
+                h1.card-header {
+                    padding: 1px 25px 10px;
+                }
+            entities:
+              - entity: sensor.bathroom_pir_battery
+                secondary_info: last-changed
+                name: Bathroom
+              - entity: sensor.hall_pir_battery
+                secondary_info: last-changed
+                name: Hall
+              - entity: sensor.closet_pir_battery
+                secondary_info: last-changed
+                name: Closet
+              - entity: sensor.kitchen_pir_battery
+                secondary_info: last-changed
+                name: Kitchen
+              - type: divider

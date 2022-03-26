@@ -1,0 +1,493 @@
+title: Overview
+icon: mdi:home
+type: custom:grid-layout
+layout:
+  grid-gap: var(--custom-layout-card-padding)
+  grid-template-columns: 400px 340px 40px 160px 40px 360px
+  grid-template-rows: 48px 800px 30px
+  grid-template-areas: |
+    ". . . . . ."
+    "one two . three . four"
+    "mone mtwo . mthree . mfour"
+visible:
+  - user: ba49ce3365aa4d5b9ff34edbfc2b90d3 #yar
+  - user: 027d3e5198054dacb5b209a29a06a347 #tablet
+badges: []
+background: >-
+  left / cover no-repeat
+  url("/local/images/9_12.png")
+  fixed
+#background: "right/auto linear-gradient(23deg, rgba(240, 240, 240, 1) 15%, rgba(160, 160, 160, 1) 45%, rgba(211, 211, 211, 1) 100%)"
+cards:
+  - type: grid
+    #title: Today's Outlook
+    columns: 1
+    view_layout:
+      grid-area: one
+    cards:
+      - type: markdown
+        content: |
+          {{ states('sensor.time') }}
+        style: |
+          ha-card {
+            margin-top: 40px;
+            background-color: rgba(0, 0, 0, 0);
+            font-size: 80px;
+            text-align: center;
+            box-shadow: none;
+          }
+      - type: markdown
+        content: |
+          ## {{ states('sensor.tablet_date_time') }}
+        style: |
+          ha-card {
+            margin-bottom: 160px;
+            background-color: rgba(0, 0, 0, 0);
+            font-size: 15px;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            text-align: center;
+          }
+      - type: custom:weather-card
+        entity: weather.home
+        current: true
+        details: true
+        forecast: true
+        hourly_forecast: false
+        number_of_forecasts: 5
+        style: |
+          ha-card {
+            background-color: rgba(0, 0, 0, 0);
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+          }
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: switch.shelly1pm_boiler
+            icon: mdi:water-plus
+            size: 45%
+            name: " "
+            template: dash_footer_look
+            state:
+              - value: "on"
+                icon: mdi:water-plus
+                color: red
+                styles:
+                  icon:
+                    - animation: blink 2s ease infinite
+              - value: "off"
+                color: orange
+                icon: mdi:water-plus
+          - type: custom:button-card
+            icon: mdi:battery-medium
+            size: 45%
+            template: dash_footer_look
+            styles:
+              icon:
+                - color: >
+                    [[[
+                      if (states["sensor.ymandr_battery_level"].state <= 30) return 'red';
+                      if (states["sensor.iragalaxy_battery_level"].state <= 30) return 'red';
+                      if (states["sensor.magic_cube_battery"].state <= 30) return 'red';
+                      if (states["sensor.bathroom_pir_battery"].state <= 30) return 'red';
+                      if (states["sensor.front_door_sensor_battery"].state <= 30) return 'red';
+                      if (states["sensor.balcony_sensor_1_battery"].state <= 30) return 'red';
+                      if (states["sensor.balcony_sensor_2_battery"].state <= 30) return 'red';
+                      if (states["sensor.dining_temp_battery"].state <= 30) return 'red';
+                      else return 'orange';
+                    ]]]
+            tap_action: !include popup/batterypop.yaml
+          - type: custom:button-card
+            icon: mdi:server-network
+            size: 45%
+            template: dash_footer_look
+            styles:
+              icon:
+                - color: orange
+            tap_action: !include popup/monitor_popup.yaml
+    square: false
+  - type: vertical-stack
+    view_layout:
+      grid-area: two
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: "custom:decluttering-card"
+            template: graph_looks
+            variables:
+              - SENSOR: sensor.living_temp_temperature
+              - ICON: mdi:thermometer
+              - NAME: Living room
+              - WIDTH: 160px
+              - CLIMATE: climate.kitchen_ac
+              - HUMI: sensor.kitchen_remote_humidity
+              - HEIGHT: 172
+              - FILL: true
+              - BKGRD: "#d4d4d4"
+          - type: "custom:decluttering-card"
+            template: graph_looks
+            variables:
+              - SENSOR: sensor.dining_temp_temperature
+              - ICON: mdi:thermometer
+              - NAME: Dining room
+              - WIDTH: 160px
+              - CLIMATE: climate.kitchen_ac
+              - HUMI: sensor.kitchen_remote_humidity
+              - HEIGHT: 172
+              - FILL: true
+              - BKGRD: "#d4d4d4"
+      - type: horizontal-stack
+        cards:
+          - type: "custom:decluttering-card"
+            template: graph_looks
+            variables:
+              - SENSOR: sensor.kitchen_remote_temperature
+              - ICON: mdi:thermometer
+              - NAME: Kitchen
+              - WIDTH: 160px
+              - CLIMATE: climate.kitchen_ac
+              - HUMI: sensor.kitchen_remote_humidity
+              - HEIGHT: 172
+              - FILL: true
+              - BKGRD: "#d4d4d4"
+          - type: "custom:decluttering-card"
+            template: graph_looks
+            variables:
+              - SENSOR: sensor.closet_temprature_temperature
+              - ICON: mdi:thermometer
+              - NAME: Closet
+              - WIDTH: 160px
+              - HEIGHT: 172
+              - FILL: true
+              - BKGRD: "#d4d4d4"
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            color_type: blank-card
+            styles:
+              card:
+                - height: 35px
+          - type: "custom:button-card"
+            color_type: blank-card
+            styles:
+              card:
+                - height: 35px
+      - type: horizontal-stack
+        cards:
+          - type: "custom:decluttering-card"
+            template: graph_looks
+            variables:
+              - SENSOR: sensor.study_remote_temperature
+              - ICON: mdi:thermometer
+              - NAME: Study
+              - WIDTH: 160px
+              - CLIMATE: climate.study_ac
+              - HUMI: sensor.study_remote_humidity
+              - HEIGHT: 172
+              - FILL: true
+              - BKGRD: "#d4d4d4"
+          - type: "custom:decluttering-card"
+            template: graph_looks
+            variables:
+              - SENSOR: sensor.bedroom_remote_temperature
+              - ICON: mdi:thermometer
+              - NAME: Bedroom
+              - WIDTH: 160px
+              - CLIMATE: climate.bedroom_ac
+              - HUMI: sensor.bedroom_remote_humidity
+              - HEIGHT: 172
+              - FILL: true
+              - BKGRD: "#d4d4d4"
+      - type: "custom:decluttering-card"
+        template: boiler_graph_looks
+        variables:
+          - SENSOR: sensor.shelly1pm_boiler_temp
+          - ICON: mdi:thermometer
+          - NAME: Water Temp
+          - WIDTH: 330px
+        square: false
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            icon: mdi:cloud-download
+            size: 45%
+            template: dash_footer_look
+            styles:
+              card:
+                - margin-top: 20px
+                - color: >
+                    [[[
+                      if (states['sensor.pending_updates'].state <= 0)
+                        return "rgba(0, 0, 0, 0)";
+                      return "rgba(255, 255, 255, 1)";
+                    ]]]
+              icon:
+                - color: orange
+              grid:
+                - position: relative
+              custom_fields:
+                notification:
+                  - background-color: >
+                      [[[
+                        if (states['sensor.pending_updates'].state <= 0)
+                          return "[]";
+                        return "#c41d1a";
+                      ]]]
+                  - border-radius: 50%
+                  - position: absolute
+                  - left: 70%
+                  - top: 10%
+                  - height: 25px
+                  - width: 25px
+                  - font-size: 14px
+                  - line-height: 25px
+            custom_fields:
+              notification: >
+                [[[ return (states['sensor.pending_updates'].state) ]]]
+            tap_action: !include popup/info_popup.yaml
+          - type: custom:button-card
+            icon: mdi:dots-grid
+            size: 45%
+            template: dash_footer_look
+            styles:
+              card:
+                - margin-top: 20px
+              icon:
+                - color: orange
+            tap_action: !include popup/misc_popup.yaml
+  - type: vertical-stack
+    #columns: 2
+    view_layout:
+      grid-area: four
+    cards:
+      - type: "custom:home-feed-card"
+        title: []
+        card_id: main_feed
+        compact_mode: off
+        scrollbars_enabled: false
+        max_item_count: 18
+        state_color: true
+        show_empty: true
+        exact_durations: true
+        # id_filter: ^home_feed_.*
+        # max_height: 545px
+        entities:
+          - entity: climate.study_ac
+            name: Study Ac
+            icon: mdi:air-conditioner
+            include_history: true
+            state_map:
+              off: is Off
+            content_template: "{{display_name}} changed to: {{state}}"
+          - entity: binary_sensor.hall_pir_occupancy
+            name: Hall Motion
+            include_history: true
+            state_map:
+              off: is Off
+            content_template: "{{display_name}} changed to: {{state}}"
+          - entity: person.yarweb
+            name: Yaroslav
+            content_template: "{{display_name}} is at: {{state}}"
+            include_history: true
+          - entity: person.iraweb
+            name: Irusya
+            content_template: "{{display_name}} is at: {{state}}"
+            include_history: true
+          - entity: switch.shelly1pm_boiler
+            name: Bolier
+            icon: mdi:water-boiler
+            state_map:
+              on: Working
+            content_template: "{{display_name}} is {{state}} "
+            include_history: true
+          - entity: vacuum.roborock_s7
+            name: Roborock S7
+            icon: mdi:robot-vacuum
+            content_template: "{{display_name}} @ {{state}}"
+            include_history: true
+          - entity: binary_sensor.bathroom_pir_occupancy
+            content_template: "{{display_name}} @ {{state}}"
+            name: Bathroom Motion
+            include_history: true
+            state_map:
+              off: No motion
+          - entity: binary_sensor.kitchen_pir_occupancy
+            content_template: "{{display_name}} @ {{state}}"
+            name: Kitchen Motion
+            state_map:
+              off: No motion
+          - entity: binary_sensor.closet_pir_occupancy
+            content_template: "{{display_name}} @ {{state}}"
+            name: Closet Motion
+            state_map:
+              off: No motion
+          - entity: binary_sensor.front_door_sensor_contact
+            content_template: "{{display_name}} was {{state}}"
+            name: Front Door
+            secondary_info: last_triggered
+            include_history: true
+          - entity: binary_sensor.balcony_sensor_1_contact
+            name: Balcony 1
+            secondary_info: last_triggered
+            content_template: "{{display_name}} was {{state}}"
+          - entity: binary_sensor.balcony_sensor_2_contact
+            content_template: "{{display_name}} was {{state}}"
+            name: Balcony 2
+            secondary_info: last_triggered
+        style: |
+          ha-card {
+            height: 643px;
+            margin-top: 0px;
+            overflow: hidden;
+            font-family: 'Open Sans', sans-serif;
+
+          }
+          :host {
+            line-height: 24px !important;
+            --ha-card-border-radius: 15px;
+          }
+          h1.card-header {
+              padding: 1px 1px 8px;
+          }
+          ha-card .card-header {
+              padding: 1px 1px 8px;
+          }
+      - type: "custom:decluttering-card"
+        template: energy_graph_looks
+        variables:
+          - SENSOR: sensor.electricity_daily_khw
+          - ICON: mdi:lightning-bolt-circle
+          - NAME: Electricity
+          - TYPE: bar
+          - WIDTH: 350px
+  - type: grid
+    columns: 1
+    view_layout:
+      grid-area: three
+    cards:
+      - type: custom:button-card
+        entity: vacuum.roborock_s7
+        name: Vacuum
+        show_label: true
+        label: |
+          [[[
+            var l = states["vacuum.roborock_s7"].state;
+            return l ;
+          ]]]
+        styles:
+          card:
+            - width: 160px
+            - height: 160px
+            - background-color: []
+            - border-radius: 5%
+            - padding: 10%
+            - font-size: 14px
+            - text-transform: capitalize
+          grid:
+            - grid-template-areas: '"i" "n" "batt" "fan" "sts"'
+            - grid-template-columns: 1fr
+            - grid-template-rows: 1fr min-content min-content min-content min-content
+          img_cell:
+            - align-self: start
+            - text-align: start
+            - margin: none
+          icon:
+            - color: >
+                [[[
+                  if (states["vacuum.roborock_s7"].state != "docked") return 'green';
+                  else return 'orange';
+                ]]]
+            - width: 40%
+            - margin-top: "-10%"
+            - align-items: start
+            - align-self: start
+            - margin-right: 60%
+          label:
+            - font-size: 12px
+            - font-weight: bold
+            - justify-self: end
+            - margin-top: "-530%"
+          name:
+            - font-weight: bold
+            - font-size: 16px
+            - align-self: left
+            - justify-self: left
+            - padding-bottom: 4px
+          custom_fields:
+            batt:
+              - align-self: start
+              - justify-self: start
+              - padding-bottom: 2px
+            fan:
+              - padding-bottom: 2px
+              - align-self: start
+              - justify-self: start
+            sts:
+              - align-self: start
+              - justify-self: start
+        custom_fields:
+          batt: |
+            [[[
+              return `<ha-icon
+                icon="mdi:battery-charging-100"
+                style="width: 15px; height: 15px; color: orange;">
+                </ha-icon><span> <span style="color: var(--text-color-sensor);">${entity.attributes.battery_level}</span></span>`
+            ]]]
+          fan: |
+            [[[
+              return `<ha-icon
+                icon="mdi:fan"
+                style="width: 15px; height: 15px; color: orange;">
+                </ha-icon> <span style="color: var(--text-color-sensor);">${entity.attributes.fan_speed}</span>`
+            ]]]
+          sts: |
+            [[[
+              return `<ha-icon
+                icon="mdi:robot-vacuum"
+                style="width: 15px; height: 15px; color: orange;">
+                </ha-icon> <span style="color: var(--text-color-sensor);">${entity.attributes.status}</span>`
+            ]]]
+        tap_action: !include popup/vacuumpop.yaml
+
+      - type: custom:button-card
+        entity: binary_sensor.front_door_sensor_contact
+        template:
+          - navigate_button_looks
+        name: Door Sensors
+        icon: mdi:door-closed-lock
+        show_label: true
+        styles:
+          icon:
+            - color: >
+                [[[
+                  if (states["binary_sensor.front_door_sensor_contact"].state != "off") return 'red';
+                  if (states["binary_sensor.balcony_sensor_2_contact"].state != "off") return 'red';
+                  if (states["binary_sensor.balcony_sensor_1_contact"].state != "off") return 'red';
+                  else return 'orange';
+                ]]]
+        tap_action: !include popup/door_sensor_popup.yaml
+      - type: "custom:button-card"
+        color_type: blank-card
+        styles:
+          card:
+            - height: 35px
+      - type: custom:button-card
+        icon: mdi:lightbulb
+        name: Lights
+        template:
+          - navigate_button_looks
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/1
+      - type: custom:button-card
+        icon: mdi:window-shutter
+        name: Blinds
+        template:
+          - navigate_button_looks
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/2
+    square: false

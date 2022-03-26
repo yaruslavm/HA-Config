@@ -1,0 +1,251 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: Roborock S7 Control
+  style:
+    .: |
+      :host {
+        --ha-card-background: #37464f;
+        --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+        --mdc-theme-surface: #37464f;
+        --ha-card-header-font-size: 18px;
+        --ha-card-border-radius: 15px;
+        --stack-card-margin: 0px 0;
+      }
+      :host .content {
+        width: calc(385px + 300px + 300px);
+        max-width: 90vw;
+      }
+  card:
+    type: custom:xiaomi-vacuum-map-card
+    entity: vacuum.roborock_s7
+    preset_name: Live map
+    debug: false
+    style: |
+      ha-card {
+      --map-card-manual-rectangle-line-color-selected: red;
+      --map-card-manual-rectangle-fill-color: rgba(255, 140, 0, 0.5);
+      --map-card-manual-rectangle-fill-color-selected: rgba(255, 140, 0, 0.5);
+      --map-card-room-outline-line-color-selected: red;
+      --map-card-room-outline-fill-color-selected: rgba(255, 140, 0, 0.5);
+
+      }
+      :host {
+        --ha-card-border-radius: 0px;
+      }
+    map_source:
+      camera: camera.my_vacuum_camera
+      crop:
+        top: 455
+        bottom: 225
+        left: 190
+        right: 190
+    calibration_source:
+      camera: true
+    map_modes:
+      - template: vacuum_clean_segment
+        predefined_selections:
+          - id: 21
+            outline:
+              - - 20151
+                - 26968
+              - - 20171
+                - 22972
+              - - 24624
+                - 23032
+              - - 24604
+                - 27048
+
+            label:
+              text: Living Room
+              x: 22716
+              "y": 24861
+              offset_y: 35
+            icon:
+              name: mdi:sofa-outline
+              x: 22716
+              "y": 24861
+          - id: 16
+            outline:
+              - - 20111
+                - 26094
+              - - 20071
+                - 28996
+              - - 16771
+                - 28937
+              - - 16791
+                - 26034
+            label:
+              text: Dining Room
+              x: 18203
+              "y": 27147
+              offset_y: 35
+            icon:
+              name: mdi:table-chair
+              x: 18203
+              "y": 27147
+          - id: 20
+            outline:
+              [
+                [18751, 35027],
+                [22187, 35047],
+                [22187, 32259],
+                [18712, 32220],
+                [18751, 35047],
+              ]
+            label:
+              text: Study
+              x: 20549
+              "y": 33649
+              offset_y: 35
+            icon:
+              name: mdi:laptop
+              x: 20549
+              "y": 33649
+          - id: 19
+            outline:
+              - - 22219
+                - 35259
+              - - 22238
+                - 31998
+              - - 23113
+                - 31998
+              - - 23093
+                - 35259
+            label:
+              text: Hall
+              x: 22914
+              "y": 33668
+              offset_y: 35
+            icon:
+              name: mdi:walk
+              x: 22914
+              "y": 33668
+          - id: 24
+            outline:
+              - - 20071
+                - 28897
+              - - 24863
+                - 28937
+              - - 24863
+                - 26927
+              - - 20071
+                - 26927
+            label:
+              text: Entrance
+              x: 23312
+              "y": 27803
+              offset_y: 35
+            icon:
+              name: mdi:walk
+              x: 23312
+              "y": 27803
+          - id: 22
+            outline:
+              - - 18700
+                - 38420
+              - - 18719
+                - 35219
+              - - 22994
+                - 35299
+              - - 23014
+                - 36810
+              - - 22059
+                - 36830
+              - - 22040
+                - 38480
+            label:
+              text: Bedroom
+              x: 20409
+              "y": 37068
+              offset_y: 35
+            icon:
+              name: mdi:bed
+              x: 20409
+              "y": 37068
+          - id: 17
+            outline:
+              - - 19395
+                - 28877
+              - - 19336
+                - 31362
+              - - 21781
+                - 31342
+              - - 21801
+                - 32018
+              - - 23133
+                - 32038
+              - - 23113
+                - 28897
+            label:
+              text: Kitchen
+              x: 20250
+              "y": 30249
+              offset_y: 35
+            icon:
+              name: mdi:fridge-outline
+              x: 20250
+              "y": 30249
+      - template: vacuum_clean_zone
+      - template: vacuum_clean_zone_predefined
+        predefined_selections:
+          - zones:
+              - - 21485
+                - 28767
+                - 24236
+                - 32131
+              - - 23217
+                - 27379
+                - 24216
+                - 28737
+            label:
+              text: Bedroom
+              x: 22932
+              "y": 30339
+              offset_y: 35
+            icon:
+              name: mdi:bed
+              x: 22932
+              "y": 30339
+          - zones:
+              - - 27782
+                - 27563
+                - 29678
+                - 29369
+            label:
+              text: Kitchen
+              x: 28760
+              "y": 28403
+              offset_y: 35
+            icon:
+              name: mdi:pot-mix
+              x: 28760
+              "y": 28403
+      - template: vacuum_goto
+      - template: vacuum_goto_predefined
+        predefined_selections:
+          - position:
+              - 28006
+              - 28036
+            label:
+              text: Emptying
+              x: 28006
+              "y": 28036
+              offset_y: 35
+            icon:
+              name: mdi:broom
+              x: 28006
+              "y": 28036
+          - position:
+              - 32143
+              - 26284
+            label:
+              text: Sofa
+              x: 32143
+              "y": 26284
+              offset_y: 35
+            icon:
+              name: mdi:sofa
+              x: 32143
+              "y": 26284
+      - template: vacuum_follow_path

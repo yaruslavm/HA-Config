@@ -1,0 +1,340 @@
+#mqtt--start##
+# Power consumption (live)
+- platform: mqtt
+  name: "Shelly1PM-power"
+  unique_id: "shelly_1pm_power"
+  qos: 1
+  expire_after: 86400
+  device_class: power
+  unit_of_measurement: "W"
+  icon: mdi:lightning-bolt-outline
+  state_topic: "shellies/shelly1pm-98CDAC2FF264/relay/0/power"
+# Power consumption (since reboot)
+- platform: mqtt
+  name: "Shelly1PM-energy"
+  expire_after: 86400
+  qos: 1
+  device_class: energy
+  state_class: total_increasing
+  unit_of_measurement: "kWh"
+  value_template: "{{ value | float / 60000 }}" #60 is per hour (wh) then /1000 for kWhs
+  icon: mdi:lightning-bolt
+  state_topic: shellies/shelly1pm-98CDAC2FF264/relay/0/energy
+# Temp sensor 0 °C
+- platform: mqtt
+  name: "Shelly1PM_boiler_temp"
+  expire_after: 86400
+  qos: 1
+  device_class: temperature
+  unit_of_measurement: "°C"
+  icon: mdi:home-thermometer-outline
+  state_topic: shellies/shelly1pm-98CDAC2FF264/ext_temperature/0
+#mqtt--end ##
+
+- platform: time_date
+  display_options:
+    - "time"
+    - "date"
+    - "date_time"
+- platform: dnsip
+- platform: uptime
+  #---db file
+- platform: filesize
+  file_paths:
+    - /config/home-assistant_v2.db
+  scan_interval: 1800
+- platform: openhardwaremonitor
+  host: 192.168.0.11
+  scan_interval: 180
+- platform: template
+  sensors:
+    #---Current Time
+    current_date_time:
+      value_template: >
+        {% set x = states('sensor.time') %}
+        {{ now().strftime("%-m.%-d %A") + now().strftime(", %-I:%M %p")}}
+      friendly_name: "Current Date/Time"
+    tablet_date_time:
+      value_template: >
+        {% set months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] %}
+        {% set days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]  %}
+        {{ days[now().weekday()] + ", "+now().strftime("%-d ") + months[now().month-1] }}
+      friendly_name: "Tablet Date/Time"
+    #---last boot
+    last_boot_date_time:
+      friendly_name: Last Boot
+      value_template: >
+        {% set date = as_timestamp(states('sensor.last_boot')) | timestamp_custom('%d') %}
+        {% set date = '{:01}'.format(date | int) %}
+        {% if date in ('1', '21', '31') %}
+          {% set date = date ~ 'st' %}
+        {% elif date in ('2', '22') %}
+          {% set date = date ~ 'nd' %}
+        {% elif date in ('3', '23') %}
+          {% set date = date ~ 'rd' %}
+        {% else %}
+          {% set date = date ~ 'th' %}
+        {% endif %}
+        {{ as_timestamp(states('sensor.last_boot')) | timestamp_custom('%H:%M on %a') }} {{ date }} {{ as_timestamp(states('sensor.last_boot')) | timestamp_custom('%b %Y') }}
+    #---Uptime
+    rpi_uptime:
+      friendly_name: Virtual Machine Uptime
+      value_template: >
+        {% set up_time = as_timestamp(now()) - as_timestamp(states('sensor.last_boot')) %}
+
+        {% set minutes = (up_time // 60) | int %}
+        {% set hours = (minutes // 60) %}
+        {% set days = (hours // 24) %}
+        {% set weeks = (days // 7) %}
+
+        {% set minutes = (minutes % 60) %}
+        {% set hours =  (hours % 24) %}
+        {% set days = (days % 7) %}
+
+        {% macro phrase(value, name) %}
+                  {%- set value = value %}
+                  {%- set end = 's' if value > 1 else '' %}
+                  {{- '{} {}{}'.format(value, name, end) if value | int > 0 else '' }}
+        {%- endmacro %}
+                  
+        {% set text = [ phrase(weeks, 'week'), phrase(days, 'day'), phrase(hours, 'hr'), phrase(minutes, 'min') ] | select('!=','') | list | join(', ') %}
+        {% set last_comma = text.rfind(',') %}
+        {% if last_comma != -1 %}
+          {% set text = text[:last_comma] + ' and' + text[last_comma + 1:] %}
+        {% endif %}
+
+        {{ text }}
+    #=================================
+    #=== Updates count
+    #=================================
+    pending_updates:
+      friendly_name: Updates
+      value_template: >
+        {{ states.binary_sensor|selectattr('entity_id', 'search', 'update_available$')|selectattr('state', 'eq', 'on')|list|count}}
+    #=================================
+    #=== Shelly Update
+    #=================================
+    shelly_update:
+      friendly_name: Shelly Update
+      value_template: >
+        {{state_attr('switch.shelly1pm_boiler', 'has_update')}}
+    #---Front door
+    front_door:
+      value_template: >
+        {%- set time = (as_timestamp(now()) - as_timestamp(states.binary_sensor.front_door_sensor_contact.last_changed)) | int  %}
+        {%- set minutes = ((time % 3600) // 60) %}
+        {%- set hours = ((time % 86400) // 3600) %}
+        {%- set days = (time // 86400) %}
+          {% if time < 60 %}
+          '<1m'
+          {%- else -%}
+            {%- if time > 86400 -%}
+              {{days}}d
+                {%- else -%}
+                {%- if time > 3600 -%}
+                  {{hours}}h
+                    {%- else -%}
+                    {%- if time > 60 -%}
+                      {{minutes}}m
+                    {%- endif -%}
+                {%- endif -%}
+            {%- endif -%}
+          {% endif %}
+
+    #====================================
+    #=== Home Assistant Component counts
+    #====================================
+    #---Count Automations
+    count_automations:
+      value_template: >
+        {%- set domains = ['automation'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+
+    #---Count Scripts
+    count_scripts:
+      value_template: >
+        {%- set domains = ['script'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+
+    #---Count Device Trackers
+    count_device_trackers:
+      value_template: >
+        {%- set domains = ['device_tracker'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+
+    #---Count Binary Sensors
+    count_binary_sensors:
+      value_template: >
+        {%- set domains = ['binary_sensor'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+
+    #---Count Sensors
+    count_sensors:
+      value_template: >
+        {%- set domains = ['sensor'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+
+    #---Count Switches
+    count_switches:
+      value_template: >
+        {%- set domains = ['switch'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+
+    #---Count Zones
+    count_zones:
+      value_template: >
+        {%- set domains = ['zone'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+
+    #---Input Booleans
+    count_input_booleans:
+      value_template: >
+        {%- set domains = ['input_boolean'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+
+    #---Input Numbers
+    count_input_numbers:
+      value_template: >
+        {%- set domains = ['input_number'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+
+    #---Input Texts
+    count_input_texts:
+      value_template: >
+        {%- set domains = ['input_text'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+
+    #---Input Selects
+    count_input_selects:
+      value_template: >
+        {%- set domains = ['input_select'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+
+    #---Input Date Times
+    count_input_datetimes:
+      value_template: >
+        {%- set domains = ['input_datetime'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+
+#===========================================
+#=== Latest Sonoff Tasmota firmware version
+#===========================================
+- platform: command_line
+  name: Tasmota Current Version
+  command: 'curl -s https://github.com/arendst/Sonoff-Tasmota/releases/latest | cut -d''"'' -f2 | rev | cut -d''/'' -f1 | rev'
+  scan_interval: 86400
+
+#==============================
+#=== Installed hass.io version
+#==============================
+- platform: version
+  name: Installed Version
+  source: local
+
+#================================
+#=== Latest Available HA Version
+#================================
+- platform: version
+  name: Latest Available Version
+  beta: false
+  image: raspberrypi3
+  source: hassio
+
+#=============================================
+#=== Last boot time, Disk, memory & CPU usage
+#=============================================
+- platform: systemmonitor
+  resources:
+    - type: last_boot
+    - type: disk_use_percent
+      arg: /
+    - type: memory_use_percent
+    - type: processor_use
+    - type: network_in
+      arg: enp0s3
+    - type: network_out
+      arg: enp0s3
+    - type: throughput_network_in
+      arg: enp0s3
+    - type: throughput_network_out
+      arg: enp0s3
+    - type: packets_in
+      arg: enp0s3
+    - type: packets_out
+      arg: enp0s3
+    - type: ipv4_address
+      arg: enp0s3
+  scan_interval: 60
+#=== end =====
