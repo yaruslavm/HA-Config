@@ -1,4 +1,4 @@
-## This is work in Progress a lot of stuff is still unfinished  and display undesirable values, credits to matt8707 for his ideas on design
+## This is work in Progress a lot of stuff is still unfinished  and display undesirable values, credits to matt8707 for his design giving me the inspiration.
 
 # Home Assistant Configuration
 * Home assistant running on Intel NUC (Windows 7 OS) & Virtual Box VM with auto start HA OS.
