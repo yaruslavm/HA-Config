@@ -129,7 +129,7 @@ cards:
           hhh: 160px
           www: 160px
       - type: custom:button-card
-        entity: light.0xa4c138d12ab80a11
+        entity: light.dining_lamp
         template: light_popup
         icon: mdi:floor-lamp
         name: Dining Lamp
@@ -146,7 +146,7 @@ cards:
           hhh: 160px
           www: 160px
       - type: custom:button-card
-        entity: light.dining_light_2_2
+        entity: light.dining_light_2
         template: light_popup
         icon: mdi:ceiling-light
         name: Dining Light 2
