@@ -17,7 +17,7 @@
 - platform: smartir
   name: Kitchen AC
   unique_id: Kitchen_ac
-  device_code: 1900
+  device_code: 1800
   controller_data: remote.kitchen_remote_remote
   temperature_sensor: sensor.kitchen_remote_temperature
   humidity_sensor: sensor.kitchen_remote_humidity

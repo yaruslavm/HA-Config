@@ -110,7 +110,7 @@ browser_mod:
               - type: divider
               - entity: binary_sensor.backups_stale
               - entity: sensor.backup_state
-              - entity: sensor.home_assistant_v2_db
+              - entity: sensor.home_assistant_v2_db_size
                 icon: mdi:database
             style: |
               ha-card {

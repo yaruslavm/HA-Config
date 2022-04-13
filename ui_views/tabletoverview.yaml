@@ -220,7 +220,7 @@ cards:
                 - margin-top: 20px
                 - color: >
                     [[[
-                      if (states['sensor.pending_updates'].state <= 0)
+                      if (states['sensor.allpending_updates'].state <= 0)
                         return "rgba(0, 0, 0, 0)";
                       return "rgba(255, 255, 255, 1)";
                     ]]]
@@ -232,7 +232,7 @@ cards:
                 notification:
                   - background-color: >
                       [[[
-                        if (states['sensor.pending_updates'].state <= 0)
+                        if (states['sensor.allpending_updates'].state <= 0)
                           return "[]";
                         return "#c41d1a";
                       ]]]
@@ -246,7 +246,7 @@ cards:
                   - line-height: 25px
             custom_fields:
               notification: >
-                [[[ return (states['sensor.pending_updates'].state) ]]]
+                [[[ return (states['sensor.allpending_updates'].state) ]]]
             tap_action: !include popup/info_popup.yaml
           - type: custom:button-card
             icon: mdi:dots-grid

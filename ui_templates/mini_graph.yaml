@@ -68,9 +68,9 @@ embed_2graph_looks:
     align_header: left
     unit: ""
     group: true
-    hours_to_show: 48
+    hours_to_show: 84
     update_interval: 600
-    points_per_hour: 0.5
+    points_per_hour: 1
     animate: false
     font_size: 70
     line_width: 2

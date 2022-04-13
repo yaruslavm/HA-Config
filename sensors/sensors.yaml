@@ -111,6 +111,12 @@
       friendly_name: Updates
       value_template: >
         {{ states.binary_sensor|selectattr('entity_id', 'search', 'update_available$')|selectattr('state', 'eq', 'on')|list|count}}
+    allpending_updates:
+      friendly_name: All Updates
+      value_template: >
+        {% set update = states.binary_sensor|selectattr('entity_id', 'search', 'update_available$')|selectattr('state', 'eq', 'on')|list | count %}
+        {% set hacsupdate = states('sensor.hacs') | int() %}
+        {{ update + hacsupdate }}
     #=================================
     #=== Shelly Update
     #=================================

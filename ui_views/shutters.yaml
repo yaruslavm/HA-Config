@@ -133,15 +133,15 @@ cards:
               padding: 1px 25px 1px;
           }
         entities:
-          - entity: cover.bedroom_blinds_1
+          - entity: cover.living_blinds
             name: Parking View
             buttons_position: left
             title_position: top
       - type: "custom:shutter-card"
         title: []
         entities:
-          - entity: cover.bedroom_blinds_1
-            name: View
+          - entity: cover.balcony_blind_one
+            name: Balcony
             buttons_position: left
             title_position: top
     square: false
