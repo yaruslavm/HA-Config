@@ -177,7 +177,7 @@ cards:
         variables:
           hhh: 160px
           www: 160px
-    square: falsestudy
+    square: false
     view_layout:
       grid-area: three
   - type: grid

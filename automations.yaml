@@ -97,30 +97,18 @@
           - 507115872674888ebde4c091eba228c6
         data:
           brightness_step_pct: -20
-      slide_face_3:
-      - service: light.turn_on
-        target:
-          entity_id: light.kitchen_light
-        data: {}
-      doubletap_face_3:
-      - service: light.turn_off
-        target:
-          entity_id: light.kitchen_light
-        data: {}
+      slide_face_3: []
+      doubletap_face_3: []
       rotate_cw_face_3:
-      - service: light.turn_on
-        data:
-          brightness_step_pct: 20
+      - service: input_boolean.turn_on
+        data: {}
         target:
-          entity_id:
-          - light.kitchen_light
+          entity_id: input_boolean.movie_mode
       rotate_ccw_face_3:
-      - service: light.turn_on
+      - service: input_boolean.turn_off
+        data: {}
         target:
-          entity_id:
-          - light.kitchen_light
-        data:
-          brightness_step_pct: -20
+          entity_id: input_boolean.movie_mode
       slide_face_0:
       - service: light.turn_on
         target:
