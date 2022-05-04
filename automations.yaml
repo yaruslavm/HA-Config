@@ -12,12 +12,7 @@
 - id: '1639838160535'
   alias: (A) Main room Lights ON (05:30 & 16:00)
   description: Time wakeup
-  trigger:
-  - platform: time
-    at: 05:30:00
-    id: (T) Evening main room lights
-  - platform: time
-    at: '16:00:00'
+  trigger: []
   condition: []
   action:
   - choose:
@@ -29,21 +24,17 @@
         - wed
         - thu
         - sun
+        before: 00:00:00
       sequence:
       - service: light.turn_on
-        target:
-          device_id:
-          - 581dd0ba9149367b20b6bfecc5103f39
-          - 07afa3b2a5d7a622f134b83bc9bd180e
+        data: {}
     - conditions:
       - condition: time
         after: '16:00:00'
+        before: 00:00:00
       sequence:
       - service: light.turn_on
-        target:
-          device_id:
-          - 581dd0ba9149367b20b6bfecc5103f39
-          - 07afa3b2a5d7a622f134b83bc9bd180e
+        data: {}
     default: []
   mode: single
 - id: '1639925169611'

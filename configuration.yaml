@@ -110,7 +110,7 @@ samsungtv_smart:
     app_list: {
     "Netflix": "3201907018807/org.tizen.netflix-app",
     "YouTube": "111299001912",
-    "Art Mode": "art"
+    "Ambient Mode": "art"
     }
 
 #----------------

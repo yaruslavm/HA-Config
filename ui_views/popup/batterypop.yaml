@@ -51,9 +51,9 @@ browser_mod:
                 secondary_info: last-changed
                 name: Magic Cube
               - type: divider
-              - entity: sensor.kitchen_pir_battery
+              - entity: sensor.living_pir_battery
                 secondary_info: last-changed
-                name: Kitchen
+                name: TV sensor
       - type: vertical-stack
         cards:
           - type: entities

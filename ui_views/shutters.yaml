@@ -75,6 +75,42 @@ cards:
         tap_action:
           action: navigate
           navigation_path: /lovelace/1
+      - type: custom:button-card
+        icon: mdi:movie-open-check
+        entity: input_boolean.movie_mode
+        size: 30%
+        name: ""
+        styles:
+          card:
+            - margin-top: 210px
+            - color: rgba(0, 0, 0, 0)
+            - width: fit-content
+            - background: rgba(0, 0, 0, 0)
+            - border: 0.12vw rgba(0, 0, 0, 0)
+            - transition: none
+            - padding: 0 0 0.05vw 0
+            - overflow: visible
+            - --mdc-ripple-color: rgba(0, 0, 0, 0.8)
+            - --paper-card-background-color: rgba(0, 0, 0, 0.0)
+            - box-shadow: "none"
+            - height: 160px
+            - width: 160px
+          icon:
+            - color: orange
+          name:
+            - color: white
+        state:
+          - value: "on"
+            icon: mdi:movie-open-check
+            color: red
+            styles:
+              icon:
+                - animation: blink 2s ease infinite
+            name: "Movie On"
+          - value: "off"
+            icon: mdi:movie-open-check
+            color: orange
+            name: "Movie Off"
     square: false
     view_layout:
       grid-area: nav

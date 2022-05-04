@@ -1,7 +1,7 @@
 action: fire-dom-event
 browser_mod:
   command: popup
-  title: Misc Items
+  title: Sockets
   style:
     .: |
       :host {
@@ -22,7 +22,7 @@ browser_mod:
       - type: vertical-stack
         cards:
           - type: entities
-            title: Bedroom Sockets
+            title: Bedroom
             style:
               .: |
                 :host {
@@ -70,7 +70,7 @@ browser_mod:
       - type: vertical-stack
         cards:
           - type: entities
-            title: PIR Sensors
+            title: Laundry
             style:
               .: |
                 :host {
@@ -87,16 +87,31 @@ browser_mod:
                     padding: 1px 25px 10px;
                 }
             entities:
-              - entity: sensor.bathroom_pir_battery
+              - entity: switch.bedroom_heater_1
                 secondary_info: last-changed
-                name: Bathroom
-              - entity: sensor.hall_pir_battery
-                secondary_info: last-changed
-                name: Hall
-              - entity: sensor.closet_pir_battery
-                secondary_info: last-changed
-                name: Closet
-              - entity: sensor.kitchen_pir_battery
-                secondary_info: last-changed
-                name: Kitchen
+                name: Dryer
+                icon: mdi:power-socket-eu
+              - entity: lock.bedroom_heater_1_child_lock
+                name: Child Lock
+              - entity: sensor.bedroom_heater_1_power
+                name: Active power draw
+
+              - entity: select.bedroom_heater_1_power_outage_memory
+                name: Action after power outage
+              - entity: sensor.bedroom_heater_1_energy
+                name: Energy Sum
               - type: divider
+              - entity: switch.bedroom_heater_2
+                secondary_info: last-changed
+                name: Washing Machine
+                icon: mdi:power-socket-eu
+              - entity: lock.bedroom_heater_2_child_lock
+                name: Child Lock
+              - entity: sensor.bedroom_heater_2_power
+                name: Active power draw
+
+              - entity: select.bedroom_heater_2_power_outage_memory
+                name: Action after power outage
+              - entity: sensor.bedroom_heater_2_energy
+                name: Energy Sum
+            state_color: true

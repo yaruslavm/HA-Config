@@ -249,7 +249,7 @@ cards:
                 [[[ return (states['sensor.allpending_updates'].state) ]]]
             tap_action: !include popup/info_popup.yaml
           - type: custom:button-card
-            icon: mdi:dots-grid
+            icon: mdi:power-socket-eu
             size: 45%
             template: dash_footer_look
             styles:
@@ -288,6 +288,18 @@ cards:
             state_map:
               off: is Off
             content_template: "{{display_name}} changed to: {{state}}"
+          - entity: binary_sensor.living_pir_occupancy
+            name: Livingroom Motion
+            include_history: true
+            state_map:
+              off: is Off
+            content_template: "{{display_name}} changed to: {{state}}"
+          - entity: media_player.living_room_tv
+            name: Livingroom TV
+            include_history: true
+            state_map:
+              off: is Off
+            content_template: "{{display_name}} is: {{state}}"
           - entity: person.yarweb
             name: Yaroslav
             content_template: "{{display_name}} is at: {{state}}"
