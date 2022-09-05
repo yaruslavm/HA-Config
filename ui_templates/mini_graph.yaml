@@ -185,7 +185,7 @@ boiler_graph_looks:
     unit: ""
     group: false
     hours_to_show: 6
-    update_interval: 600
+    update_interval: "[[UPDATETIME]]"
     points_per_hour: 6
     animate: false
     line_width: 6
@@ -246,12 +246,76 @@ energy_graph_looks:
     name: "[[NAME]]"
     unit: ""
     group: false
-    hours_to_show: 168
-    update_interval: 600
-    points_per_hour: 0.0416
+    hours_to_show: 3
+    update_interval: "[[UPDATETIME]]"
+    points_per_hour: 6
     animate: false
     line_width: 6
     hour24: true
+    smoothing: false
+    font_size: 80
+    height: 82
+    show:
+      fill: true
+      graph: line
+      icon: true
+      state: true
+      labels: hover
+      points: hover
+      legend: false
+      extrema: false
+      name_adaptive_color: false
+      icon_adaptive_color: false
+      labels_secondary: false
+    color_thresholds:
+      - value: 10
+        color: "#b4b7b8"
+      - value: 1900
+        color: "#b4b7b8"
+      - value: 2000
+        color: "#db8a0f"
+    style: |
+      ha-card {
+        border: [[BORDER]];
+        width: [[WIDTH]];
+        border-radius: 5%;
+        font-size: 300%;
+        color: []
+      }
+      ha-card .header.flex .name.flex {
+        color: []
+      }
+      .header.flex .icon {
+        --mdc-icon-size: 25px;
+        color: orange;
+      }
+      ha-card .states.flex {
+        color: []
+        font-size: 12px;
+      }
+      ha-card .info.flex {
+        color: []
+      }
+      ha-card .graph .graph__container .graph__labels {
+        color: []
+      }
+    tap_action: !include ../ui_views/popup/electricity_popup.yaml
+
+energy_history_graph_looks:
+  card:
+    type: "custom:mini-graph-card"
+    entities:
+      - entity: "[[SENSOR]]"
+    icon: "[[ICON]]"
+    name: "[[NAME]]"
+    unit: ""
+    group: false
+    hours_to_show: "[[HTS]]"
+    update_interval: "[[UI]]"
+    points_per_hour: "[[PPH]]"
+    animate: false
+    line_width: 6
+    hour24: "[[TWF]]"
     smoothing: true
     font_size: 80
     height: 82
@@ -304,4 +368,3 @@ energy_graph_looks:
       ha-card .graph .graph__container .graph__labels {
         color: []
       }
-    tap_action: !include ../ui_views/popup/electricity_popup.yaml

@@ -1,7 +1,7 @@
 action: fire-dom-event
 browser_mod:
   command: popup
-  title: Electricity Details
+  title: Electricity
   style:
     .: |
       :host {
@@ -22,7 +22,7 @@ browser_mod:
       - type: vertical-stack
         cards:
           - type: entities
-            title: Daily
+            title: Consumption
             style:
               .: |
                 :host {
@@ -42,30 +42,33 @@ browser_mod:
                     padding: 1px 25px 1px;
                 }
             entities:
-              - entity: sensor.bathroom_pir_battery
+              - entity: sensor.3em_consumed_power
                 secondary_info: last-changed
-                name: Current Consumption(W)
-              - entity: sensor.hall_pir_battery
-                name: Today's Cost
+                name: Total (W)
               - type: divider
-              - entity: sensor.closet_pir_battery
-                name: Previos Day total
-              - entity: sensor.kitchen_pir_battery
-                name: Previos Day Cost
+              - entity: sensor.3em_phase_a_power
+                name: Phase A
+              - entity: sensor.3em_phase_b_power
+                name: Phase B
+              - entity: sensor.3em_phase_c_power
+                name: Phase C
           - type: "custom:decluttering-card"
-            template: energy_graph_looks
+            template: energy_history_graph_looks
             variables:
-              - SENSOR: sensor.electricity_daily_khw
+              - SENSOR: sensor.3em_consumed_power
               - ICON: mdi:lightning-bolt-circle
               - NAME: Current
               - TYPE: bar
+              - PPH: 1
+              - UI: 60
+              - HTS: 12
+              - TWF: false
               - WIDTH: 350px
-
         state_color: true
       - type: vertical-stack
         cards:
           - type: entities
-            title: Monthly
+            title: Details
             style:
               .: |
                 :host {
@@ -85,21 +88,25 @@ browser_mod:
                     padding: 1px 25px 1px;
                 }
             entities:
-              - entity: sensor.bathroom_pir_battery
+              - entity: sensor.electricity_monthly_khw
                 secondary_info: last-changed
                 name: This Month
               - entity: sensor.hall_pir_battery
                 name: This Month Cost
               - type: divider
-              - entity: sensor.closet_pir_battery
-                name: Previos Month
+              - entity: sensor.electricity_daily_khw
+                name: Today
               - entity: sensor.kitchen_pir_battery
-                name: Previos Month Cost
+                name: Today Cost
           - type: "custom:decluttering-card"
-            template: energy_graph_looks
+            template: energy_history_graph_looks
             variables:
-              - SENSOR: sensor.electricity_daily_khw
+              - SENSOR: sensor.3em_total_consumed_energy
               - ICON: mdi:lightning-bolt-circle
               - NAME: Last 7 Days
               - TYPE: bar
+              - PPH: 0.0416
+              - UI: 600
+              - HTS: 168
+              - TWF: true
               - WIDTH: 350px

@@ -3,11 +3,13 @@ default_config:
 #smartIR update settings
 smartir:
   check_updates: false
-#loggers
-#logger:
-#  default: info
-#  logs:
-#    custom_components.xiaomi_cloud_map_extractor: debug
+#########
+#loggers#
+#########
+logger:
+  default: info
+  logs:
+    custom_components.xiaomi_cloud_map_extractor: debug
 #custome lovelace
 lovelace:
   mode: yaml
@@ -118,10 +120,10 @@ samsungtv_smart:
 #----------------
 utility_meter:
   electricity_daily_khw:
-    source: sensor.bedroom_heater_2_energy
+    source: sensor.3em_total_consumed_energy
     cycle: daily
   electricity_monthly_khw:
-    source: sensor.bedroom_heater_2_energy
+    source: sensor.3em_total_consumed_energy
     cycle: monthly
 #----------------
 

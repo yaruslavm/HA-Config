@@ -20,7 +20,7 @@ background: >-
 #background: "right/auto linear-gradient(23deg, rgba(240, 240, 240, 1) 15%, rgba(160, 160, 160, 1) 45%, rgba(211, 211, 211, 1) 100%)"
 cards:
   - type: grid
-    title: []
+    title: ""
     columns: 1
     cards:
       - type: custom:button-card
@@ -29,7 +29,7 @@ cards:
         name: Overview
         styles:
           card:
-            - margin-top: 5px
+            - margin-top: 45px
             - color: rgba(0, 0, 0, 0)
             - width: fit-content
             - background: rgba(0, 0, 0, 0)
@@ -135,15 +135,15 @@ cards:
           }
         entities:
           - entity: cover.bedroom_blinds_1
-            name: Sea View
+            name: Sea Side
             buttons_position: left
             title_position: top
             invert_percentage: false
       - type: "custom:shutter-card"
         title: []
         entities:
-          - entity: cover.bedroom_blinds_1
-            name: View
+          - entity: cover.bedroom_blinds_two
+            name: Parking Side
             buttons_position: left
             title_position: top
     square: false

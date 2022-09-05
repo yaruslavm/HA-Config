@@ -208,6 +208,7 @@ cards:
           - ICON: mdi:thermometer
           - NAME: Water Temp
           - WIDTH: 330px
+          - UPDATETIME: 600
         square: false
       - type: horizontal-stack
         cards:
@@ -370,10 +371,10 @@ cards:
       - type: "custom:decluttering-card"
         template: energy_graph_looks
         variables:
-          - SENSOR: sensor.electricity_daily_khw
+          - SENSOR: sensor.3em_consumed_power
           - ICON: mdi:lightning-bolt-circle
           - NAME: Electricity
-          - TYPE: bar
+          - UPDATETIME: 60
           - WIDTH: 350px
   - type: grid
     columns: 1
@@ -502,4 +503,14 @@ cards:
         tap_action:
           action: navigate
           navigation_path: /lovelace/2
+      - type: custom:button-card
+        icon: mdi:volume-high
+        size: 45%
+        template: dash_footer_look
+        styles:
+          card:
+            - margin-top: 20px
+          icon:
+            - color: orange
+        tap_action: !include popup/notification_popup.yaml
     square: false

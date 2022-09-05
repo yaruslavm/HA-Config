@@ -1,4 +1,5 @@
-#mqtt--start##
+#mqtt--start##\
+# -----------------------------Shelly MQTT Power Monitor for shelly 1PM (boiler) ----------------------------
 # Power consumption (live)
 - platform: mqtt
   name: "Shelly1PM-power"
@@ -29,6 +30,82 @@
   unit_of_measurement: "°C"
   icon: mdi:home-thermometer-outline
   state_topic: shellies/shelly1pm-98CDAC2FF264/ext_temperature/0
+# -----------------------------Shelly MQTT Power Monitor for Shelly 3EM ----------------------------
+- platform: mqtt
+  name: "3EM - Phase A - Energy"
+  value_template: "{{ value|float / 60000 }}" # Wm to kWh
+  unit_of_measurement: "kWh"
+  expire_after: 86400
+  device_class: energy
+  state_class: total_increasing
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/0/energy"
+- platform: mqtt
+  name: "3EM - Phase A - Total Energy"
+  value_template: "{{ value|float / 60000 }}"
+  unit_of_measurement: "kWh"
+  expire_after: 86400
+  device_class: energy
+  state_class: total_increasing
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/0/total"
+- platform: mqtt
+  name: "3EM - Phase A - Power"
+  unit_of_measurement: "W"
+  expire_after: 86400
+  device_class: power
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/0/power"
+- platform: mqtt
+  name: "3EM - Phase B - Energy"
+  value_template: "{{ value|float / 60000 }}" # Wm to kWh
+  unit_of_measurement: "kWh"
+  expire_after: 86400
+  device_class: energy
+  state_class: total_increasing
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/1/energy"
+- platform: mqtt
+  name: "3EM - Phase B - Total Energy"
+  value_template: "{{ value|float / 60000 }}"
+  unit_of_measurement: "kWh"
+  expire_after: 86400
+  device_class: energy
+  state_class: total_increasing
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/1/total"
+- platform: mqtt
+  name: "3EM - Phase B - Power"
+  unit_of_measurement: "W"
+  expire_after: 86400
+  device_class: power
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/1/power"
+- platform: mqtt
+  name: "3EM - Phase C - Energy"
+  value_template: "{{ value|float / 60000 }}" # Wm to kWh
+  unit_of_measurement: "kWh"
+  expire_after: 86400
+  device_class: energy
+  state_class: total_increasing
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/2/energy"
+- platform: mqtt
+  name: "3EM - Phase C - Total Energy"
+  value_template: "{{ value|float / 60000 }}"
+  unit_of_measurement: "kWh"
+  expire_after: 86400
+  device_class: energy
+  state_class: total_increasing
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/2/total"
+- platform: mqtt
+  name: "3EM - Phase C - Power"
+  unit_of_measurement: "W"
+  expire_after: 86400
+  device_class: power
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/2/power"
 #mqtt--end ##
 
 - platform: time_date
@@ -48,6 +125,25 @@
   scan_interval: 180
 - platform: template
   sensors:
+    #mqtt energy summs
+    3em_consumed_energy:
+      friendly_name: "Energy Consumption"
+      device_class: energy
+      unit_of_measurement: "kWh"
+      value_template: "{{ ((states('sensor.3em_phase_a_energy')|float + states('sensor.3em_phase_b_energy')|float + states('sensor.3em_phase_c_energy')|float)/sqrt(3))|round(2) }}"
+      availability_template: "{{ not ( is_state('sensor.3em_phase_a_energy', 'unavailable') or is_state('sensor.3em_phase_b_energy', 'unavailable') or is_state('sensor.3em_phase_c_energy', 'unavailable') ) }}"
+    3em_total_consumed_energy:
+      friendly_name: "Total Energy Consumption"
+      device_class: energy
+      unit_of_measurement: "kWh"
+      value_template: "{{ ((states('sensor.3em_phase_a_total_energy')|float + states('sensor.3em_phase_b_total_energy')|float + states('sensor.3em_phase_c_total_energy')|float)/sqrt(3))|round(2) }}"
+      availability_template: "{{ not ( is_state('sensor.3em_phase_a_total_energy', 'unavailable') or is_state('sensor.3em_phase_b_total_energy', 'unavailable') or is_state('sensor.3em_phase_c_total_energy', 'unavailable') ) }}"
+    3em_consumed_power:
+      friendly_name: "Total Power Consumption"
+      device_class: power
+      unit_of_measurement: "W"
+      value_template: "{{ ((states('sensor.3em_phase_a_power')|float + states('sensor.3em_phase_b_power')|float + states('sensor.3em_phase_c_power')|float))|round(2) }}"
+      availability_template: "{{ not ( is_state('sensor.3em_phase_a_power', 'unavailable') or is_state('sensor.3em_phase_b_power', 'unavailable') or is_state('sensor.3em_phase_c_power', 'unavailable') ) }}"
     #---Current Time
     current_date_time:
       value_template: >
