@@ -164,7 +164,7 @@ graph_looks:
         color: orange;
       }
       ha-card .states.flex {
-        color: []
+        color: [[BKGRD]];
         font-size: 12px;
       }
       ha-card .info.flex {
@@ -174,7 +174,7 @@ graph_looks:
         color: []
       }
     tap_action: !include ../ui_views/popup/climate2_popup.yaml
-
+#        {{ '#fc0000' if is_state('climate.study_ac', 'heat') else '#ffffff' }};
 boiler_graph_looks:
   card:
     type: "custom:mini-graph-card"

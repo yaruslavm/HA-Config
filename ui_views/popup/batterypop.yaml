@@ -43,7 +43,7 @@ browser_mod:
               - entity: sensor.iragalaxy_battery_level
                 secondary_info: last-changed
                 name: Ira's Phone
-              - entity: sensor.ymandr_battery_level
+              - entity: sensor.pixel_6_battery_level
                 secondary_info: last-changed
                 name: Yar's Phone
               - type: divider

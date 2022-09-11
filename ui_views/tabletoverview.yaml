@@ -89,7 +89,7 @@ cards:
               icon:
                 - color: >
                     [[[
-                      if (states["sensor.ymandr_battery_level"].state <= 30) return 'red';
+                      if (states["sensor.pixel_6_battery_level"].state <= 30) return 'red';
                       if (states["sensor.iragalaxy_battery_level"].state <= 30) return 'red';
                       if (states["sensor.magic_cube_battery"].state <= 30) return 'red';
                       if (states["sensor.bathroom_pir_battery"].state <= 30) return 'red';
@@ -126,7 +126,7 @@ cards:
               - HUMI: sensor.kitchen_remote_humidity
               - HEIGHT: 172
               - FILL: true
-              - BKGRD: "#d4d4d4"
+              - BKGRD: "{% set state=states('climate.kitchen_ac') %} {% if state=='cool' %} #4d8de8 {% elif state=='heat' %} #fc0000 {% else %} #ffffff {% endif %}"
           - type: "custom:decluttering-card"
             template: graph_looks
             variables:
@@ -138,7 +138,7 @@ cards:
               - HUMI: sensor.kitchen_remote_humidity
               - HEIGHT: 172
               - FILL: true
-              - BKGRD: "#d4d4d4"
+              - BKGRD: "{% set state=states('climate.kitchen_ac') %} {% if state=='cool' %} #4d8de8 {% elif state=='heat' %} #c66900 {% else %} #ffffff {% endif %}"
       - type: horizontal-stack
         cards:
           - type: "custom:decluttering-card"
@@ -152,7 +152,7 @@ cards:
               - HUMI: sensor.kitchen_remote_humidity
               - HEIGHT: 172
               - FILL: true
-              - BKGRD: "#d4d4d4"
+              - BKGRD: "{% set state=states('climate.kitchen_ac') %} {% if state=='cool' %} #4d8de8 {% elif state=='heat' %} #c66900 {% else %} #ffffff {% endif %}"
           - type: "custom:decluttering-card"
             template: graph_looks
             variables:
@@ -188,7 +188,7 @@ cards:
               - HUMI: sensor.study_remote_humidity
               - HEIGHT: 172
               - FILL: true
-              - BKGRD: "#d4d4d4"
+              - BKGRD: "{% set state=states('climate.study_ac') %} {% if state=='cool' %} #4d8de8 {% elif state=='heat' %} #c66900 {% else %} #ffffff {% endif %}"
           - type: "custom:decluttering-card"
             template: graph_looks
             variables:
@@ -200,7 +200,7 @@ cards:
               - HUMI: sensor.bedroom_remote_humidity
               - HEIGHT: 172
               - FILL: true
-              - BKGRD: "#d4d4d4"
+              - BKGRD: "{% set state=states('climate.bedroom_ac') %} {% if state=='cool' %} #4d8de8 {% elif state=='heat' %} #c66900 {% else %} #ffffff {% endif %}"
       - type: "custom:decluttering-card"
         template: boiler_graph_looks
         variables:

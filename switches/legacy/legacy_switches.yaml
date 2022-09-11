@@ -1,0 +1,9 @@
+#- platform: mqtt
+#  name: "shelly1pm-boiler"
+#  unique_id: "shelly1pm-boiler"
+#  payload_on: "on"
+#  payload_off: "off"
+#  qos: 0
+#  state_topic: "shellies/shelly1pm-98CDAC2FF264/relay/0"
+#  command_topic: "shellies/shelly1pm-98CDAC2FF264/relay/0/command"
+#  json_attributes_topic: "shellies/shelly1pm-98CDAC2FF264/info"

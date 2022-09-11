@@ -1,0 +1,110 @@
+#mqtt--start##\
+# -----------------------------Shelly MQTT Power Monitor for shelly 1PM (boiler) ----------------------------
+# Power consumption (live)
+- name: "Shelly1PM-power"
+  unique_id: "shelly_1pm_power"
+  qos: 1
+  expire_after: 86400
+  device_class: power
+  unit_of_measurement: "W"
+  icon: mdi:lightning-bolt-outline
+  state_topic: "shellies/shelly1pm-98CDAC2FF264/relay/0/power"
+# Power consumption (since reboot)
+
+- name: "Shelly1PM-energy"
+  expire_after: 86400
+  qos: 1
+  device_class: energy
+  state_class: total_increasing
+  unit_of_measurement: "kWh"
+  value_template: "{{ value | float / 60000 }}" #60 is per hour (wh) then /1000 for kWhs
+  icon: mdi:lightning-bolt
+  state_topic: shellies/shelly1pm-98CDAC2FF264/relay/0/energy
+# Temp sensor 0 °C
+
+- name: "Shelly1PM_boiler_temp"
+  expire_after: 86400
+  qos: 1
+  device_class: temperature
+  unit_of_measurement: "°C"
+  icon: mdi:home-thermometer-outline
+  state_topic: shellies/shelly1pm-98CDAC2FF264/ext_temperature/0
+
+# -----------------------------Shelly MQTT Power Monitor for Shelly 3EM ----------------------------
+
+- name: "3EM_Phase_A_Energy"
+  value_template: "{{ value|float / 60000 }}" # Wm to kWh
+  unit_of_measurement: "kWh"
+  expire_after: 86400
+  device_class: energy
+  state_class: total_increasing
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/0/energy"
+
+- name: "3EM_Phase_A_Total_Energy"
+  value_template: "{{ value|float / 60000 }}"
+  unit_of_measurement: "kWh"
+  expire_after: 86400
+  device_class: energy
+  state_class: total_increasing
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/0/total"
+
+- name: "3EM_Phase_A_Power"
+  unit_of_measurement: "W"
+  expire_after: 86400
+  device_class: power
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/0/power"
+
+- name: "3EM - Phase B - Energy"
+  value_template: "{{ value|float / 60000 }}" # Wm to kWh
+  unit_of_measurement: "kWh"
+  expire_after: 86400
+  device_class: energy
+  state_class: total_increasing
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/1/energy"
+
+- name: "3EM - Phase B - Total Energy"
+  value_template: "{{ value|float / 60000 }}"
+  unit_of_measurement: "kWh"
+  expire_after: 86400
+  device_class: energy
+  state_class: total_increasing
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/1/total"
+
+- name: "3EM - Phase B - Power"
+  unit_of_measurement: "W"
+  expire_after: 86400
+  device_class: power
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/1/power"
+
+- name: "3EM - Phase C - Energy"
+  value_template: "{{ value|float / 60000 }}" # Wm to kWh
+  unit_of_measurement: "kWh"
+  expire_after: 86400
+  device_class: energy
+  state_class: total_increasing
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/2/energy"
+
+- name: "3EM - Phase C - Total Energy"
+  value_template: "{{ value|float / 60000 }}"
+  unit_of_measurement: "kWh"
+  expire_after: 86400
+  device_class: energy
+  state_class: total_increasing
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/2/total"
+
+- name: "3EM - Phase C - Power"
+  unit_of_measurement: "W"
+  expire_after: 86400
+  device_class: power
+  qos: 1
+  state_topic: "shellies/shellyem3-244CAB436044/emeter/2/power"
+#--end------##
+

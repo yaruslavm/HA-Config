@@ -132,12 +132,15 @@ conversation:
 #camera for Vacuum
 camera: !include_dir_merge_list camera/
 #custom sensors
-sensor: !include_dir_merge_list sensors/
+mqtt: 
+  sensor: !include_dir_merge_list sensors/mqtt/
+  switch: !include_dir_merge_list switches/mqtt/
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
-#custom shelly switches
-switch: !include_dir_merge_list switches/
+#legacy
+switch: !include_dir_merge_list switches/legacy/
+sensor: !include_dir_merge_list sensors/legacy/
 #broadlink to climate entities
 climate: !include_dir_merge_list climate/

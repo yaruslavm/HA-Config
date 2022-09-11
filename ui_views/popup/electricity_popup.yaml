@@ -59,9 +59,9 @@ browser_mod:
               - ICON: mdi:lightning-bolt-circle
               - NAME: Current
               - TYPE: bar
-              - PPH: 1
+              - PPH: 10
               - UI: 60
-              - HTS: 12
+              - HTS: 168
               - TWF: false
               - WIDTH: 350px
         state_color: true
