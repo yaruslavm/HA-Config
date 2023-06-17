@@ -157,26 +157,25 @@ cards:
     view_layout:
       grid-area: two
   - type: grid
-    title: Kitchen
+    title: Bedroom
     columns: 1
     cards:
       - type: custom:button-card
-        entity: binary_sensor.kitchen_pir_occupancy
+        entity: binary_sensor.bathroom_pir_occupancy
         show_last_changed: true
         template: sensorpir_looks
-        name: Kitchen
         variables:
           hhh: 160px
           www: 160px
           mt: -10%
+        name: Main Bathroom
       - type: custom:button-card
-        entity: light.kitchen_light
+        entity: light.bathroom_light
         template: light_popup
-        icon: mdi:ceiling-light
-        name: Kitchen Light
         variables:
           hhh: 160px
           www: 160px
+        name: Main Bath Light
     square: false
     view_layout:
       grid-area: three
@@ -244,25 +243,34 @@ cards:
     view_layout:
       grid-area: mone
   - type: grid
-    title: Bedroom
+    title: Kitchen
     columns: 2
     cards:
       - type: custom:button-card
-        entity: binary_sensor.bathroom_pir_occupancy
+        entity: binary_sensor.kitchen_pir_occupancy
         show_last_changed: true
         template: sensorpir_looks
+        name: Kitchen
         variables:
           hhh: 160px
           www: 160px
           mt: -10%
-        name: Main Bathroom
       - type: custom:button-card
-        entity: light.bathroom_light
+        entity: light.kitchen_light
         template: light_popup
+        icon: mdi:ceiling-light
+        name: Kitchen Light
         variables:
           hhh: 160px
           www: 160px
-        name: Main Bath Light
+      - type: custom:button-card
+        entity: light.kitchen_led
+        template: light_popup
+        icon: mdi:ceiling-light
+        name: Kitchen LED
+        variables:
+          hhh: 160px
+          www: 160px
     square: false
     view_layout:
       grid-area: mtwo

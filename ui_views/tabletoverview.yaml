@@ -169,12 +169,12 @@ cards:
             color_type: blank-card
             styles:
               card:
-                - height: 35px
+                - height: 28px
           - type: "custom:button-card"
             color_type: blank-card
             styles:
               card:
-                - height: 35px
+                - height: 28px
       - type: horizontal-stack
         cards:
           - type: "custom:decluttering-card"

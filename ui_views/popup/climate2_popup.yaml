@@ -11,6 +11,9 @@ browser_mod:
         --ha-card-header-font-size: 18px;
         --ha-card-border-radius: 15px;
       }
+      :host .content {
+        margin: -23px -24px;
+      }
   card:
     type: vertical-stack
     cards:
@@ -55,7 +58,7 @@ browser_mod:
         update_interval: 600
         points_per_hour: 6
         animate: false
-        line_width: 4
+        line_width: 5
         line_color: var(--accent-color)
         hour24: true
         smoothing: false
@@ -81,4 +84,9 @@ browser_mod:
           .: |
             :host {
               --ha-card-border-radius: 0px;
+              padding: 0px 0px -25px;
+              -webkit-box-shadow: none;
+              -moz-box-shadow: none;
+              box-shadow: none;
+              text-align: left;
             }

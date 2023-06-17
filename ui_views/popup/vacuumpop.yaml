@@ -15,6 +15,7 @@ browser_mod:
       :host .content {
         width: calc(385px + 300px + 300px);
         max-width: 90vw;
+        margin: -23px -24px;
       }
   card:
     type: custom:xiaomi-vacuum-map-card

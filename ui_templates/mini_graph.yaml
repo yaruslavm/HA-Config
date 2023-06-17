@@ -125,7 +125,7 @@ graph_looks:
     update_interval: 600
     points_per_hour: 6
     animate: false
-    line_width: 8
+    line_width: 10
     font_size: 80
     line_color: var(--accent-color)
     color: []

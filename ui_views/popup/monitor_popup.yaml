@@ -13,7 +13,7 @@ browser_mod:
       }
       :host .content {
       width: 1200px;
-      margin: -20px -24px;
+      margin: -23px -24px;
         }
   card:
     type: horizontal-stack
@@ -95,8 +95,17 @@ browser_mod:
         cards:
           - type: vertical-stack
             cards:
+              - type: picture
+                image: /local/images/My_WiFi_QR_Code22.png
+                style: |
+                  ha-card {
+                  width: 192px;
+                  padding: 26px 95px 0px;
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none;
+                  box-shadow: none;
+                  }
               - type: entities
-                title: Network
                 show_header_toggle: false
                 style: |
                   ha-card {
@@ -122,12 +131,7 @@ browser_mod:
                   - entity: sensor.adguard_average_processing_speed
                   - entity: sensor.network_in_enp0s3
                   - entity: sensor.network_out_enp0s3
-                  - type: divider
-                  - entity: sensor.speedtest_ping
-                  - entity: sensor.speedtest_ping
-                  - entity: sensor.speedtest_ping
-                  - entity: sensor.speedtest_ping
-                    name: placeholder
+
               - type: "custom:decluttering-card"
                 template: embed_2graph_looks
                 variables:
