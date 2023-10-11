@@ -7,7 +7,7 @@
   #---db file
   scan_interval: 1800
 - platform: openhardwaremonitor
-  host: 192.168.0.11
+  host: 192.168.0.3
   scan_interval: 180
 - platform: template
   sensors:
@@ -97,7 +97,7 @@
       friendly_name: All Updates
       value_template: >
         {% set update = states.binary_sensor|selectattr('entity_id', 'search', 'update_available$')|selectattr('state', 'eq', 'on')|list | count %}
-        {% set hacsupdate = states('sensor.hacs') | int() %}
+        {% set hacsupdate = states('sensor.hacs') | int(default=0) %}
         {{ update + hacsupdate }}
     #=================================
     #=== Shelly Update

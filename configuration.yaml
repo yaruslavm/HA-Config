@@ -108,7 +108,7 @@ recorder:
 #===end
 
 samsungtv_smart:
-  - host: 192.168.0.34
+  - host: 192.168.0.150
     app_list: {
     "Netflix": "3201907018807/org.tizen.netflix-app",
     "YouTube": "111299001912",

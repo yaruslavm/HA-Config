@@ -68,7 +68,7 @@ embed_2graph_looks:
     align_header: left
     unit: ""
     group: true
-    hours_to_show: 84
+    hours_to_show: 12
     update_interval: 600
     points_per_hour: 1
     animate: false
@@ -76,7 +76,7 @@ embed_2graph_looks:
     line_width: 2
     line_color: var(--accent-color)
     hour24: true
-    smoothing: true
+    smoothing: false
     height: "[[HEIGHT]]"
     show:
       name: true

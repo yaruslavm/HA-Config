@@ -36,8 +36,9 @@
     - rooms
     - vacuum_position
   scan_interval:
-    seconds: 30
+    seconds: 10
   auto_update: true
   store_map_raw: false
   store_map_image: true
   store_map_path: "/tmp"
+  force_api: xiaomi

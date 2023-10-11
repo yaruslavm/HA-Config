@@ -101,7 +101,7 @@ cards:
                     ]]]
             tap_action: !include popup/batterypop.yaml
           - type: custom:button-card
-            icon: mdi:server-network
+            icon: mdi:wifi
             size: 45%
             template: dash_footer_look
             styles:
@@ -504,7 +504,7 @@ cards:
           action: navigate
           navigation_path: /lovelace/2
       - type: custom:button-card
-        icon: mdi:volume-high
+        icon: mdi:refresh-auto
         size: 45%
         template: dash_footer_look
         styles:
@@ -512,5 +512,5 @@ cards:
             - margin-top: 20px
           icon:
             - color: orange
-        tap_action: !include popup/notification_popup.yaml
+        tap_action: !include popup/automation_sounds_notification.yaml
     square: false

@@ -1,0 +1,85 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: "Automations and Sounds"
+  style:
+    .: |
+      :host {
+        --ha-card-background: #37464f;
+        --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+        --mdc-theme-surface: #37464f;
+        --ha-card-header-font-size: 18px;
+        --ha-card-border-radius: 15px;
+      }
+        hui-vertical-stack-card:
+        $: |
+            #root {
+            margin: 0px 0 0px 0;
+            height: 80%;
+          }
+      :host .content {
+      width: 760px;
+      margin: 1px 4px;
+      height: 80%;
+        }
+  card:
+    type: "horizontal-stack"
+    cards:
+      - type: vertical-stack
+        view_layout:
+          grid-area: two
+        cards:
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: input_boolean.bedroom_ac_off
+                name: Bedroom AC OFF
+              - entity: input_boolean.bedroom_shutter_close
+                name: Bedroom Shutter Close
+              - entity: input_boolean.bedroom_shutter_open
+                name: Bedroom Shutter Open
+              - entity: input_boolean.bedroom_warm_bed_on
+                name: Warm Bed Auto On
+              - entity: input_boolean.bedroom_warm_bed_off
+                name: Warm Bed Auto Off
+              - type: divider
+              - entity: input_boolean.boiler_automatin
+                name: Boiler Automation
+              - type: divider
+              - entity: input_boolean.livingroom_lights_on
+                name: Livingroom Lights On
+              - entity: input_boolean.livingroom_lights_off
+                name: Livingroom Lights Off
+              - entity: input_boolean.tv_trigger
+                name: TV Picture Mode
+            style: |
+              ha-card {
+                --ha-card-background: #37464f;
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+              }
+            state_color: true
+      - type: vertical-stack
+        view_layout:
+          grid-area: one
+        cards:
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: input_boolean.notify_boiler
+                name: Notify Boiler
+              - type: divider
+              - entity: input_boolean.notify_front_door
+                name: Notify Front Door
+              - type: divider
+              - entity: input_boolean.notify_washing_machine
+                name: Notify Washing Machine
+            style: |
+              ha-card {
+                --ha-card-background: #37464f;
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+              }
+            state_color: true
