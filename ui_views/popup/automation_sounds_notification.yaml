@@ -52,6 +52,9 @@ browser_mod:
                 name: Livingroom Lights Off
               - entity: input_boolean.tv_trigger
                 name: TV Picture Mode
+              - type: divider
+              - entity: input_boolean.closet_lights_automation
+                name: Closet Lights Automation
             style: |
               ha-card {
                 --ha-card-background: #37464f;
@@ -68,13 +71,16 @@ browser_mod:
             show_header_toggle: false
             entities:
               - entity: input_boolean.notify_boiler
-                name: Notify Boiler
+                name: Notify - Boiler
               - type: divider
               - entity: input_boolean.notify_front_door
-                name: Notify Front Door
+                name: Notify - Front Door
               - type: divider
               - entity: input_boolean.notify_washing_machine
-                name: Notify Washing Machine
+                name: Notify - Washing Machine
+              - type: divider
+              - entity: input_boolean.kitchenauto
+                name: "Auto - Kitchen Lights"
             style: |
               ha-card {
                 --ha-card-background: #37464f;

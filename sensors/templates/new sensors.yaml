@@ -1,0 +1,45 @@
+- sensor:
+    #Energy cost summs
+    - name: "Energy Total"
+      unique_id: energy_total
+      state: >-
+        {{ states('sensor.a_energy')|float(0) + 
+          states('sensor.b_energy')|float(0) + 
+          states('sensor.c_energy')|float(0) }}
+      unit_of_measurement: kWh
+      device_class: energy
+      state_class: total_increasing
+      availability: >
+        {{ not 'unavailable' in 
+          [ states('sensor.a_energy'), 
+            states('sensor.b_energy'),
+            states('sensor.c_energy') ] }}
+    - name: "Power Total"
+      unique_id: power_total
+      state: >-
+        {{ (states('sensor.a_power')|float(0) + 
+            states('sensor.b_power')|float(0) + 
+            states('sensor.c_power')|float(0)) }}
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      availability: >
+        {{ not 'unavailable' in 
+          [ states('sensor.a_power'), 
+            states('sensor.b_power'),
+            states('sensor.c_power') ] }}
+    - name: electricity_daily_cost
+      unit_of_measurement: ILS
+      state: >-
+        {{'{:.2f}'.format(states('sensor.electricity_daily_kwh')|float(0) * 
+          states('input_number.tarrif')|float(0))}}
+    - name: electricity_weekly_cost
+      unit_of_measurement: ILS
+      state: >-
+        {{'{:.2f}'.format(states('sensor.electricity_weekly_kwh')|float(0) * 
+          states('input_number.tarrif')|float(0))}}
+    - name: electricity_monthly_cost
+      unit_of_measurement: ILS
+      state: >-
+        {{'{:.2f}'.format(states('sensor.electricity_monthly_kwh')|float(0) * 
+          states('input_number.tarrif')|float(0))}}

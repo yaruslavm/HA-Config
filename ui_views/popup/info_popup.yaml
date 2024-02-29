@@ -94,10 +94,10 @@ browser_mod:
                 icon: mdi:water-boiler
               - type: divider
               - entity: sensor.installed_version
-                name: Hassio Installed Version
+                name: HA Installed Version
                 icon: mdi:home-assistant
               - entity: sensor.latest_available_version
-                name: Hassio Latest Version
+                name: HA Latest Version
 
               - type: divider
               - entity: sensor.uptime

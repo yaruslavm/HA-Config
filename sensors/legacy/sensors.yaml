@@ -11,6 +11,13 @@
   scan_interval: 180
 - platform: template
   sensors:
+    #Energy cost summs
+    total_electricity_cost:
+      friendly_name: "Total Electricity Cost"
+      unit_of_measurement: ILS
+      value_template: "{{ ((states('sensor.a_energy_cost')|float + states('sensor.b_energy_cost')|float + states('sensor.c_energy_cost')|float)) }}"
+      availability_template: "{{ not ( is_state('sensor.a_energy_cost', 'unavailable') or is_state('sensor.b_energy_cost', 'unavailable') or is_state('sensor.c_energy_cost', 'unavailable') ) }}"
+
     #mqtt energy summs
     3em_consumed_energy:
       friendly_name: "Energy Consumption"
@@ -286,10 +293,10 @@
 
 #==============================
 #=== Installed hass.io version
-#==============================
-- platform: version
-  name: Installed Version
-  source: local
+#==========DEPRECATED============DEPRECATED========
+#- platform: version
+#  name: Installed Version
+#  source: local
 
 #================================
 #=== Latest Available HA Version

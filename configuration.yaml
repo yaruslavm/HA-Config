@@ -119,14 +119,18 @@ samsungtv_smart:
 # Utility Meter #
 #----------------
 utility_meter:
-  electricity_daily_khw:
-    source: sensor.3em_total_consumed_energy
+  electricity_daily_kwh:
+    source: sensor.energy_total
     cycle: daily
-  electricity_monthly_khw:
-    source: sensor.3em_total_consumed_energy
+  electricity_weekly_kwh:
+    source: sensor.energy_total
+    cycle: weekly
+  electricity_monthly_kwh:
+    source: sensor.energy_total
     cycle: monthly
 #----------------
 
+  
 #conversation
 conversation:
 #camera for Vacuum
@@ -142,5 +146,7 @@ scene: !include scenes.yaml
 #legacy
 switch: !include_dir_merge_list switches/legacy/
 sensor: !include_dir_merge_list sensors/legacy/
+#new
+template: !include_dir_merge_list sensors/templates/
 #broadlink to climate entities
 climate: !include_dir_merge_list climate/

@@ -145,7 +145,7 @@ graph_looks:
       icon_adaptive_color: false
       labels_secondary: false
     color_thresholds:
-      - value: 19.5
+      - value: 10.5
         color: "#b4b7b8"
       - value: 90
         color: "#db8a0f"
@@ -316,7 +316,7 @@ energy_history_graph_looks:
     animate: false
     line_width: 6
     hour24: "[[TWF]]"
-    smoothing: true
+    smoothing: false
     font_size: 80
     height: 82
     color: red
@@ -327,18 +327,20 @@ energy_history_graph_looks:
       state: true
       labels: hover
       points: hover
-      legend: true
+      legend: false
       extrema: false
       name_adaptive_color: false
       icon_adaptive_color: false
       labels_secondary: false
-    group_by: date
-    aggregate_func: diff
+    #    group_by: date
+    #    aggregate_func: diff
     color_thresholds:
-      - value: 40
+      - value: 10
+        color: "#b4b7b8"
+      - value: 1900
+        color: "#b4b7b8"
+      - value: 2000
         color: "#db8a0f"
-      - value: 49
-        color: "#696666"
     style: |
       ha-card {
         border: [[BORDER]];

@@ -50,7 +50,7 @@
   - service: light.turn_on
   mode: single
 - id: '1643388279450'
-  alias: Disable vacuum camera update when docked
+  alias: 'Vacuum : Disable vacuum camera update when docked'
   description: ''
   use_blueprint:
     path: PiotrMachowski/disable_vacuum_camera_update_when_docked.yaml
@@ -114,3 +114,14 @@
           - light.living_lamp
           - light.dining_lamp
         data: {}
+- id: '1698644779246'
+  alias: 'Vacuum : Update Map Extractor camera'
+  description: ''
+  use_blueprint:
+    path: PiotrMachowski/update_map_extractor.yaml
+    input:
+      vacuum: vacuum.roborock_s7
+      camera: camera.my_vacuum_camera
+      mode_to_handle: two_intervals
+      interval_cleaning: 60
+      interval_docked: 10000

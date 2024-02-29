@@ -108,9 +108,9 @@ browser_mod:
                     padding: 1px 25px 10px;
                 }
             entities:
-              - entity: sensor.closet_temprature_battery
+              - entity: sensor.dining_temp_battery
                 secondary_info: last-changed
-                name: Dining Temperature
+                name: Dining
               - type: divider
               - entity: sensor.front_door_sensor_battery
                 secondary_info: last-changed

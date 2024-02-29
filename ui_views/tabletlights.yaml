@@ -209,6 +209,15 @@ cards:
     square: false
     cards:
       - type: custom:button-card
+        entity: binary_sensor.kitchen_presense_presence
+        show_last_changed: true
+        template: sensorpir_looks
+        name: Study Presense
+        variables:
+          hhh: 160px
+          www: 160px
+          mt: -10%
+      - type: custom:button-card
         entity: light.study_light_1
         template: light_popup
         icon: mdi:ceiling-light
@@ -232,16 +241,8 @@ cards:
         variables:
           hhh: 160px
           www: 160px
-      - type: custom:button-card
-        entity: light.study_lamp
-        template: light_popup
-        icon: mdi:floor-lamp
-        name: Office Lamp
-        variables:
-          hhh: 160px
-          www: 160px
     view_layout:
-      grid-area: mone
+      grid-area: mtwo
   - type: grid
     title: Kitchen
     columns: 2
@@ -250,7 +251,16 @@ cards:
         entity: binary_sensor.kitchen_pir_occupancy
         show_last_changed: true
         template: sensorpir_looks
-        name: Kitchen
+        name: Kitchen PIR
+        variables:
+          hhh: 160px
+          www: 160px
+          mt: -10%
+      - type: custom:button-card
+        entity: binary_sensor.presence_sensor_fp2_a8d3_presence_sensor_2
+        show_last_changed: true
+        template: sensorpir_looks
+        name: Kitchen Presense
         variables:
           hhh: 160px
           www: 160px
@@ -266,34 +276,34 @@ cards:
       - type: custom:button-card
         entity: light.kitchen_led
         template: light_popup
-        icon: mdi:ceiling-light
+        icon: mdi:led-strip-variant
         name: Kitchen LED
         variables:
           hhh: 160px
           www: 160px
     square: false
     view_layout:
-      grid-area: mtwo
+      grid-area: mone
   - type: grid
-    title: Bathrooms
+    title: Study
     columns: 1
     cards:
       - type: custom:button-card
-        entity: binary_sensor.bathroom_pir_occupancy
-        show_last_changed: true
-        template: sensorpir_looks
-        variables:
-          hhh: 160px
-          www: 160px
-          mt: -10%
-        name: Main Bathroom
-      - type: custom:button-card
-        entity: light.bathroom_light
+        entity: light.study_lamp
         template: light_popup
+        icon: mdi:floor-lamp
+        name: Office Lamp
         variables:
           hhh: 160px
           www: 160px
-        name: Main Bath Light
+      - type: custom:button-card
+        entity: light.study_led
+        template: light_popup
+        icon: mdi:led-strip-variant
+        name: Study LED
+        variables:
+          hhh: 160px
+          www: 160px
     square: false
     view_layout:
       grid-area: mthree

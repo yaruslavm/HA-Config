@@ -37,7 +37,6 @@
   unit_of_measurement: "kWh"
   expire_after: 86400
   device_class: energy
-  state_class: total_increasing
   qos: 1
   state_topic: "shellies/shellyem3-244CAB436044/emeter/0/energy"
 
@@ -62,7 +61,6 @@
   unit_of_measurement: "kWh"
   expire_after: 86400
   device_class: energy
-  state_class: total_increasing
   qos: 1
   state_topic: "shellies/shellyem3-244CAB436044/emeter/1/energy"
 
@@ -87,7 +85,6 @@
   unit_of_measurement: "kWh"
   expire_after: 86400
   device_class: energy
-  state_class: total_increasing
   qos: 1
   state_topic: "shellies/shellyem3-244CAB436044/emeter/2/energy"
 

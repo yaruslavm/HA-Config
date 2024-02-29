@@ -14,7 +14,7 @@ browser_mod:
       }
       :host .content {
       width: 700px;
-      margin: -20px -24px;
+      margin: -22px -24px;
         }
   card:
     type: horizontal-stack
@@ -39,36 +39,39 @@ browser_mod:
                     padding: 1px 20px 1px;
                 }
                 h1.card-header {
-                    padding: 1px 25px 1px;
+                    padding: 1px 25px 8px;
                 }
             entities:
+              - type: divider
               - entity: sensor.3em_consumed_power
-                secondary_info: last-changed
                 name: Total (W)
               - type: divider
               - entity: sensor.3em_phase_a_power
                 name: Phase A
+                icon: mdi:home-lightning-bolt-outline
               - entity: sensor.3em_phase_b_power
                 name: Phase B
+                icon: mdi:home-lightning-bolt-outline
               - entity: sensor.3em_phase_c_power
                 name: Phase C
+                icon: mdi:home-lightning-bolt-outline
           - type: "custom:decluttering-card"
             template: energy_history_graph_looks
             variables:
               - SENSOR: sensor.3em_consumed_power
-              - ICON: mdi:lightning-bolt-circle
+              - ICON: mdi:transmission-tower-export
               - NAME: Current
-              - TYPE: bar
-              - PPH: 10
+              - TYPE: line
+              - PPH: 6
               - UI: 60
-              - HTS: 168
-              - TWF: false
+              - HTS: 3
+              - TWF: true
               - WIDTH: 350px
         state_color: true
       - type: vertical-stack
         cards:
           - type: entities
-            title: Details
+            title: Costs
             style:
               .: |
                 :host {
@@ -88,25 +91,28 @@ browser_mod:
                     padding: 1px 25px 1px;
                 }
             entities:
-              - entity: sensor.electricity_monthly_khw
-                secondary_info: last-changed
-                name: This Month
-              - entity: sensor.hall_pir_battery
-                name: This Month Cost
+              - entity: input_number.tarrif
+                name: Tarrif
               - type: divider
-              - entity: sensor.electricity_daily_khw
+              - entity: sensor.electricity_daily_cost
                 name: Today
-              - entity: sensor.kitchen_pir_battery
-                name: Today Cost
+                icon: mdi:calendar-today-outline
+              - entity: sensor.electricity_weekly_cost
+                name: Week
+                icon: mdi:calendar-week-outline
+              - entity: sensor.electricity_monthly_cost
+                name: This Month
+                icon: mdi:calendar-month
           - type: "custom:decluttering-card"
             template: energy_history_graph_looks
             variables:
-              - SENSOR: sensor.3em_total_consumed_energy
+              - SENSOR: sensor.electricity_daily_kwh
               - ICON: mdi:lightning-bolt-circle
               - NAME: Last 7 Days
-              - TYPE: bar
+              - TYPE: line
               - PPH: 0.0416
               - UI: 600
               - HTS: 168
               - TWF: true
               - WIDTH: 350px
+#0.0416

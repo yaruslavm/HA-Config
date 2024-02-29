@@ -126,7 +126,7 @@ cards:
               - HUMI: sensor.kitchen_remote_humidity
               - HEIGHT: 172
               - FILL: true
-              - BKGRD: "{% set state=states('climate.kitchen_ac') %} {% if state=='cool' %} #4d8de8 {% elif state=='heat' %} #fc0000 {% else %} #ffffff {% endif %}"
+              - BKGRD: "{% set state=states('climate.kitchen_ac') %} {% if state=='cool' %} #4d8de8 {% elif state=='heat' %} #c66900 {% else %} #ffffff {% endif %}"
           - type: "custom:decluttering-card"
             template: graph_looks
             variables:
@@ -327,6 +327,11 @@ cards:
             include_history: true
             state_map:
               off: No motion
+          - entity: binary_sensor.presence_sensor_fp2_a8d3_presence_sensor_2
+            content_template: "{{display_name}} @ {{state}}"
+            name: Kitchen Presense
+            state_map:
+              off: No motion
           - entity: binary_sensor.kitchen_pir_occupancy
             content_template: "{{display_name}} @ {{state}}"
             name: Kitchen Motion
@@ -372,10 +377,11 @@ cards:
         template: energy_graph_looks
         variables:
           - SENSOR: sensor.3em_consumed_power
-          - ICON: mdi:lightning-bolt-circle
+          - ICON: mdi:transmission-tower-export
           - NAME: Electricity
           - UPDATETIME: 60
           - WIDTH: 350px
+
   - type: grid
     columns: 1
     view_layout:
