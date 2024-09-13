@@ -47,9 +47,9 @@ browser_mod:
                 name: Boiler Automation
               - type: divider
               - entity: input_boolean.livingroom_lights_on
-                name: Livingroom Lights On
+                name: Livingroom LAMPS On
               - entity: input_boolean.livingroom_lights_off
-                name: Livingroom Lights Off
+                name: Livingroom LAMPS Off
               - entity: input_boolean.tv_trigger
                 name: TV Picture Mode
               - type: divider
@@ -81,6 +81,8 @@ browser_mod:
               - type: divider
               - entity: input_boolean.kitchenauto
                 name: "Auto - Kitchen Lights"
+              - entity: input_boolean.livingroom_main_lights
+                name: "Auto - Livingroom Lights"
             style: |
               ha-card {
                 --ha-card-background: #37464f;

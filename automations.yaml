@@ -122,6 +122,6 @@
     input:
       vacuum: vacuum.roborock_s7
       camera: camera.my_vacuum_camera
-      mode_to_handle: two_intervals
+      mode_to_handle: turn_off_when_docked
       interval_cleaning: 60
       interval_docked: 10000

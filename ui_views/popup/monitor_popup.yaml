@@ -23,11 +23,12 @@ browser_mod:
           - type: vertical-stack
             cards:
               - type: entities
-                title: HA VM
+                title: VM in Beelink SER6 (7735HS)
                 show_header_toggle: false
                 style: |
                   ha-card {
                     background-color: rgba(0, 0, 0, 0);
+                    padding: 0px 0px 0px;
                     -webkit-box-shadow: none;
                     -moz-box-shadow: none;
                     box-shadow: none;
@@ -49,63 +50,7 @@ browser_mod:
                     icon: mdi:harddisk
                     name: SSD Space Used
               - type: entities
-                title: Intel Nuc (I5-4250U)
-                show_header_toggle: false
-                style: |
-                  ha-card {
-                    background-color: rgba(0, 0, 0, 0);
-                    -webkit-box-shadow: none;
-                    -moz-box-shadow: none;
-                    box-shadow: none;
-                  }
-                  ha-card .card-header {
-                      padding: 1px 20px 1px;
-                  }
-                  h1.card-header {
-                      padding: 1px 25px 1px;
-                  }
-                entities:
-                  - entity: sensor.livingroom_pc_intel_core_i5_4250u_load_cpu_total
-                    icon: mdi:cpu-64-bit
-                    name: CPU Usage
-                  - entity: sensor.livingroom_pc_intel_d54250wyk_nuvoton_nct6776f_temperatures_cpu_core
-                    icon: mdi:thermometer
-                    name: CPU Temp
-                  - entity: sensor.livingroom_pc_generic_memory_load_memory
-                    icon: mdi:memory
-                    name: RAM Usage
-                  - entity: sensor.livingroom_pc_kingston_sv300s37a240g_load_used_space
-                    icon: mdi:harddisk
-                    name: SSD Space Used
-                  - entity: sensor.livingroom_pc_kingston_sv300s37a240g_temperatures_temperature
-                    icon: mdi:harddisk
-                    name: SSD Temp
-                  - entity: sensor.livingroom_pc_kingston_sv300s37a240g_levels_remaining_life
-                    icon: mdi:harddisk
-                    name: SSD Life
-              - type: "custom:decluttering-card"
-                template: embed_graph_looks
-                variables:
-                  - SENSOR: sensor.livingroom_pc_intel_d54250wyk_nuvoton_nct6776f_fans_fan_2
-                  - ICON: mdi:fan
-                  - NAME: Nuc Fan
-                  - HEIGHT: 127
-                  - FILL: true
-      - type: vertical-stack
-        cards:
-          - type: vertical-stack
-            cards:
-              - type: picture
-                image: /local/images/My_WiFi_QR_Code22.png
-                style: |
-                  ha-card {
-                  width: 192px;
-                  padding: 26px 95px 0px;
-                  -webkit-box-shadow: none;
-                  -moz-box-shadow: none;
-                  box-shadow: none;
-                  }
-              - type: entities
+                title: Network
                 show_header_toggle: false
                 style: |
                   ha-card {
@@ -132,6 +77,20 @@ browser_mod:
                   - entity: sensor.network_in_enp0s3
                   - entity: sensor.network_out_enp0s3
 
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: picture
+                image: /local/images/My_WiFi_QR_Code22.png
+                style: |
+                  ha-card {
+                  width: 192px;
+                  padding: 26px 95px 110px;
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none;
+                  box-shadow: none;
+                  }
               - type: "custom:decluttering-card"
                 template: embed_2graph_looks
                 variables:
@@ -152,6 +111,7 @@ browser_mod:
                 style: |
                   ha-card {
                     background-color: rgba(0, 0, 0, 0);
+                    padding: 0px 0px 40px;
                     -webkit-box-shadow: none;
                     -moz-box-shadow: none;
                     box-shadow: none;
@@ -165,31 +125,9 @@ browser_mod:
                 entities:
                   - switch.adguard_protection
                   - switch.adguard_filtering
-                  - sensor.adguard_dns_queries_blocked_ratio
-              - type: entities
-                title: AdGuard Features
-                show_header_toggle: false
-                state_color: true
-                style: |
-                  ha-card {
-                    background-color: rgba(0, 0, 0, 0);
-                    -webkit-box-shadow: none;
-                    -moz-box-shadow: none;
-                    box-shadow: none;
-                  }
-                  ha-card .card-header {
-                      padding: 1px 20px 1px;
-                  }
-                  h1.card-header {
-                      padding: 1px 25px 1px;
-                  }
-                entities:
                   - switch.adguard_parental_control
-                  - sensor.adguard_parental_control_blocked
                   - switch.adguard_safe_browsing
-                  - sensor.adguard_safe_browsing_blocked
                   - switch.adguard_safe_search
-                  - sensor.adguard_safe_searches_enforced
               - type: "custom:decluttering-card"
                 template: embed_2graph_looks
                 variables:

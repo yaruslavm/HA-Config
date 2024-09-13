@@ -37,7 +37,7 @@
     - vacuum_position
   scan_interval:
     seconds: 14400
-  auto_update: false
+  auto_update: true
   store_map_raw: false
   store_map_image: true
   store_map_path: "/tmp"

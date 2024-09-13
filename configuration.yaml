@@ -1,3 +1,10 @@
+#reverse proxy configuration
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 192.168.10.13      # Add the IP address of the proxy server
+#    - 192.168.10.0/24  # You may also provide the subnet mask
+
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 #smartIR update settings
